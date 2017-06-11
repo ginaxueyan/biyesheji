@@ -1,0 +1,33 @@
+HTML {
+	BACKGROUND: #dae6f3; FONT: 12px Arial, Helvetica, sans-serif; COLOR: #ffffff
+}
+BODY {
+	BACKGROUND: #dae6f3; FONT: 12px Arial, Helvetica, sans-serif; COLOR: #ffffff
+}
+.logintable {
+	BORDER-RIGHT: #296c89 1px solid; BORDER-TOP: #296c89 1px solid; BACKGROUND: #159bd0; MARGIN-LEFT: auto; BORDER-LEFT: #296c89 1px solid; MARGIN-RIGHT: auto; BORDER-BOTTOM: #296c89 1px solid
+}
+.loginheader TD {
+	BACKGROUND: url(../../images/admin/login_header.gif) repeat-x; HEIGHT: 40px
+}
+INPUT {
+	BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #ffffff 1px solid; BACKGROUND: #ffffff; BORDER-LEFT: #ffffff 1px solid; BORDER-BOTTOM: #ffffff 1px solid
+}
+TD.line1 {
+	BORDER-BOTTOM: #3c8db1 1px solid
+}
+TD.line2 {
+	BORDER-TOP: #81cdef 1px solid
+}
+A {
+	COLOR: #ffff66
+}
+FORM {
+	MARGIN: 0px
+}
+A:hover {
+	COLOR: #ffff66
+}
+.button {
+	BORDER-RIGHT: #296c89 1px solid; PADDING-RIGHT: 6px; BORDER-TOP: #296c89 1px solid; PADDING-LEFT: 6px; BACKGROUND: url(../../images/admin/bg_button.gif) #bedeff repeat-x; PADDING-BOTTOM: 0px; FONT: 12px/20px Arial, Helvetica, sans-serif; BORDER-LEFT: #296c89 1px solid; COLOR: #000000; PADDING-TOP: 0px; BORDER-BOTTOM: #296c89 1px solid; HEIGHT: 26px; outline: 1px solid #296c89
+}

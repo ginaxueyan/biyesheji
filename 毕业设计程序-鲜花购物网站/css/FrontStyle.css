@@ -1,0 +1,58 @@
+﻿body{
+	font-family: "宋体";
+	font-size: 12px;
+	color: #000000;
+	margin: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	text-align:center;
+}
+/*<STYLE type=text/css>*/
+.A:link { 
+COLOR: #FFFFFF; TEXT-DECORATION: none 
+} 
+.A:visited { 
+COLOR: #FFFFFF; TEXT-DECORATION: none 
+} 
+.A:hover { 
+COLOR:#808080 ; TEXT-DECORATION: none 
+} 
+/*A:active { 
+COLOR: #ff0000; TEXT-DECORATION: none 
+} */
+/*<STYLE> */
+.B:link { 
+COLOR: #696969; TEXT-DECORATION: none 
+} 
+.B:visited { 
+COLOR: #696969; TEXT-DECORATION: none 
+} 
+.B:hover { 
+COLOR:#F5438F ; TEXT-DECORATION: none 
+} 
+
+.C:link { 
+COLOR: #FFFFFF; TEXT-DECORATION: none 
+} 
+.C:visited { 
+COLOR: #FFFFFF; TEXT-DECORATION: none 
+} 
+.C:hover { 
+COLOR:#ffff33 ; TEXT-DECORATION: none 
+}
+
+.style2 {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #434343;
+	
+}
+.biaoti {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF0000;	
+}

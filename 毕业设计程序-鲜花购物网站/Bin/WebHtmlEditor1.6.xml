@@ -1,0 +1,3353 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebHtmlEditor1.6</name>
+    </assembly>
+    <members>
+        <member name="T:LionSky.WebControls.ToolbarToolCollection">
+             <summary>
+             列表控件中 <see cref="T:LionSky.WebControls.Tool"/> 的集合。不能继承此类。使用用大小可按需动态增加的数组实现 IList 接口，Collection of Toolbar objects。
+             </summary>
+             <remarks>
+             <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 是密封类。不能继承此类。<see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 类表示 <see cref="T:LionSky.WebControls.Tool"/> 的集合，<see cref="T:LionSky.WebControls.Tool"/> 反过来表示工具栏列表中的项。若要以编程方式从列表控件中检索 <see cref="T:LionSky.WebControls.Tool"/> 对象，请使用以下方法之一： <br/>
+             <list type="bullet">
+                 <item>
+                     <description>利用数组表示法使用索引器从集合中获取单个 <see cref="T:LionSky.WebControls.Tool"/>。</description>
+                 </item>
+                 <item>
+                     <description>使用 <see cref="M:LionSky.WebControls.ToolbarToolCollection.CopyTo(System.Array,System.Int32)"/> 方法将集合的内容复制到 <see cref="T:System.Array"/> 对象，然后可以使用该对象获取集合中的项。</description>
+                 </item>
+                 <item>
+                     <description>使用 <see cref="M:LionSky.WebControls.ToolbarToolCollection.GetEnumerator"/> 方法创建一个 <see cref="T:System.Collections.IEnumerator"/> 实现的对象，然后可以使用该对象从集合中获取项。</description>
+                 </item>
+             </list>
+             <see cref="P:LionSky.WebControls.ToolbarToolCollection.Count"/> 属性指定集合中项的总数，常用于确定集合的上限。通过使用 <see cref="M:LionSky.WebControls.ToolbarToolCollection.Add(LionSky.WebControls.Tool)"/> 和 <see cref="M:LionSky.WebControls.ToolbarToolCollection.Remove(LionSky.WebControls.Tool)"/> 方法，可以将项添加到该集合和从该集合中移除项。
+             </remarks>
+             <example>
+             <code>
+             <![CDATA[
+             <%@ Page Language="C#"%>
+             
+             <%@ Register Assembly="WebHtmlEditor1.6" Namespace="LionSky.WebControls" TagPrefix="Lionsky" %>
+             
+             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+             
+             <html xmlns="http://www.w3.org/1999/xhtml" >
+             <head runat="server">
+                 <script runat="server">
+                 protected void Page_Load(object sender, EventArgs e)
+                 {
+                     Toolbar tb = new Toolbar();
+                     tb.Name = "Toolbar1";
+                     tb.Tools.Add(new ToolbarButton(LionSky.WebControls.ButtonType.Button, "CTRL+B", "Bold"));
+                     WebHtmlEditor1.Toolbars.Add(tb);
+                 }
+                   protected void Button1_Click(Object sender, EventArgs e)
+                   {
+                       Response.Write(WebHtmlEditor1.Html);
+                   }
+                </script>
+             </head>
+             <body>    
+                 <form id="form1" runat="server">
+                <div>
+                <Lionsky:WebHtmlEditor ID="WebHtmlEditor1" runat="server">
+                 </Lionsky:WebHtmlEditor>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+            </div>
+             </form>
+            </body>
+            </html>
+             ]]>
+            </code>
+             </example>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.#ctor(LionSky.WebControls.Toolbar)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 的实例
+            </summary>
+            <param name="owner"></param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.Add(LionSky.WebControls.Tool)">
+            <summary>
+            将 <see cref="T:LionSky.WebControls.Tool"/> 追加到集合的结尾。
+            </summary>
+            <param name="oTool">要追加到集合的 <see cref="T:LionSky.WebControls.Tool"/>。 </param>
+            <returns>返回添加项的索引值</returns>
+            <remarks>使用 Add 方法将一个 <see cref="T:LionSky.WebControls.Tool"/> 追加到集合的结尾。此方法实现采用 Toolbars 参数指定的 <see cref="T:LionSky.WebControls.Tool"/> 并将其追加到集合。</remarks>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.AddAt(System.Int32,LionSky.WebControls.Tool)">
+            <summary>
+            将指定的 <see cref="T:LionSky.WebControls.Tool"/> 对象添加到集合中的指定索引位置。
+            </summary>
+            <param name="index">数组中添加子控件的位置。</param>
+            <param name="oTool">要添加到集合的 <see cref="T:LionSky.WebControls.Tool"/> 对象。</param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.AddRange(LionSky.WebControls.Tool[])">
+            <summary>
+            将 <see cref="T:LionSky.WebControls.Tool"/> 的数组添加到 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 的末尾。
+            </summary>
+            <param name="oTools"><see cref="T:LionSky.WebControls.ToolbarToolCollection"/>，其数组应被添加到  <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 的末尾。集合本身不能为空引用（Visual Basic 中为 Nothing），但它可以包含为空引用 (Nothing) 的元素。</param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.Clear">
+            <summary>
+            从当前服务器控件的 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中移除所有控件。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+            从 Array 中的指定索引位置开始，将 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中存储的子控件复制到 <see cref="T:System.Array"/> 对象
+            </summary>
+            <param name="array">要将子控件复制到的 Array。</param>
+            <param name="index">array 中从零开始的相对索引，从此位置开始进行复制。</param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.GetToolIndex(LionSky.WebControls.Tool)">
+            <summary>
+            检索集合中指定<see cref="T:LionSky.WebControls.Tool"/> 对象的索引。
+            </summary>
+            <param name="oTool">为其返回索引的 <see cref="T:LionSky.WebControls.Tool"/> 对象。</param>
+            <returns>指定服务器控件的索引。如果服务器控件当前不是集合的成员，则返回 -1。</returns>
+            <remarks>使用此方法确定 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中指定服务器控件的索引位置。</remarks>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.GetEnumerator">
+            <summary>
+            检索可以循环访问 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象的枚举数。
+            </summary>
+            <returns>循环访问集合的枚举数。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.Remove(LionSky.WebControls.Tool)">
+            <summary>
+            从父服务器控件的 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中移除指定服务器控件。
+            </summary>
+            <param name="oTool">要移除的服务器控件。</param>
+            <remarks>若要从索引位置移除控件，请使用 <see cref="M:LionSky.WebControls.ToolbarToolCollection.RemoveAt(System.Int32)"/> 方法。</remarks>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarToolCollection.RemoveAt(System.Int32)">
+            <summary>
+            从 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中移除指定索引位置处的子控件。
+            </summary>
+            <param name="index">要从集合中移除的服务器控件的序号索引。</param>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarToolCollection.Count">
+            <summary>
+            为指定的 ASP.NET 服务器控件获取 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中的服务器控件数。
+            </summary>
+            <value>为指定的 ASP.NET 服务器控件获取 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中的服务器控件数。</value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarToolCollection.IsReadOnly">
+            <summary>
+            获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象是否为只读。
+            </summary>
+            <value>获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象是否为只读。如果控件为只读，则为 true；否则为 false。默认为 false。</value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarToolCollection.IsSynchronized">
+            <summary>
+            获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 是否已同步。
+            </summary>
+            <value>获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 是否已同步。</value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarToolCollection.Item(System.Int32)">
+            <summary>
+            获取对 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 对象中指定索引位置的服务器控件的引用。
+            </summary>
+            <param name="index">服务器控件在 <see cref="T:LionSky.WebControls.ToolbarToolCollection"/> 中的位置。</param>
+            <returns></returns>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarToolCollection.SyncRoot">
+            <summary>
+            获取可用于同步控件集合访问的对象。
+            </summary>
+            <value>获取可用于同步控件集合访问的对象。用于同步集合的 <see cref="T:System.Object"/>。</value>
+        </member>
+        <member name="T:LionSky.WebControls.Core.ImageHandler">
+            <summary>
+            用于获取 HtmlEditor 资源文件中图像的类
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            通过实现 IHttpHandler 接口的自定义 HttpHandler 启用 HTTP Web 请求的处理。
+            </summary>
+            <param name="context">HttpContext 对象，它提供对用于为 HTTP 请求提供服务的内部服务器对象（如 Request、Response、Session 和 Server）的引用</param>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageHandler.IsReusable">
+            <summary>
+            获取一个值，该值指示其他请求是否可以使用 IHttpHandler 实例。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditorDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+            初始化设计器并加载指定的组件。
+            </summary>
+            <param name="component">正在设计的控件元素。</param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditorDesigner.GetDesignTimeHtml">
+            <summary>
+            获取设计时用于表示控件的 HTML。
+            </summary>
+            <returns>设计时用于表示控件的 HTML。</returns>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditorDesigner.DesignTimeHtmlRequiresLoadComplete">
+            <summary>
+            指示是否必须在设计器完成加载之后才能使用设计时 HTML
+            </summary>
+            <value>如果必须在完成加载之后才能访问设计时 HTML，则为 true；否则为 false。</value>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Shared.Globals.GetFilesName(System.String)">
+            <summary>
+            获取物理文件+路径格式的文件名
+            </summary>
+            <param name="filesName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Shared.Globals.ReplaceUrlCmpartLine(System.String)">
+            <summary>
+            替换Url分隔线
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Shared.Globals.CombinePathReplaceUrl(System.String,System.String)">
+            <summary>
+            合并路径为Url字符串
+            </summary>
+            <param name="path1">路径1</param>
+            <param name="path2">路径2</param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Shared.Globals.GetImage(System.String)">
+            <summary>
+            得到Image文件内容
+            </summary>
+            <param name="filename">文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Shared.Globals.GetResx(System.String)">
+            <summary>
+            得到资源文件中的内容
+            </summary>
+            <param name="filename">资源文件文件名</param>
+            <returns>返回 filename 中的资源文件内容</returns>
+            <permission cref="T:System.Security.PermissionSet">public</permission>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Shared.Globals.EncoderScript(System.String)">
+            <summary>
+            对Script脚本进行系统级编码
+            </summary>
+            <param name="str">要编码的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="T:LionSky.WebControls.IDE.ListItem">
+            <summary>
+            自定义 IDE 中 ListBox 要添加的 ListItem
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ListItem.#ctor(LionSky.WebControls.IDE.BaseEditor,System.Object)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.IDE.ListItem"/> 的实例
+            </summary>
+            <param name="parentEditor">当前 IDE 设计用基类</param>
+            <param name="value">要编辑的值</param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ListItem.ToString">
+            <summary>
+            从 Object 中解析要显示的文字
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:LionSky.WebControls.IDE.ListItem.Editor">
+            <summary>
+            获取当前 IDE 设计用基类
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.IDE.ListItem.Value">
+            <summary>
+            获取当前被编辑的值
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Core.Resx.files">
+            <summary>
+            用来存储资源文件中的文件内容
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Core.Resx.asmfiles">
+            <summary>
+            用来存储资源文件中的文件内容
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Resx.LoadAssemblyFiles(System.String)">
+            <summary>
+            载入资源文件中的所有内容
+            </summary>
+            <param name="filename">资源文件名称</param>
+            <returns>返回 filename 文件中的内容</returns>
+            <remarks>
+            此文件为 Resx 内部使用,仅供 LoadFile 文件调用
+            </remarks>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Resx.LoadFile(System.String)">
+            <summary>
+            载入资源文件中的所有内容
+            </summary>
+            <param name="filename">资源文件名称</param>
+            <returns>返回 filename 文件中的内容</returns>
+            <example>
+            以下示例演示了如何调用　LoadFile　方法：<br />
+            <code>
+            	byte[] bs;
+            	bs = Resx.LoadFile("/web.config");
+            </code>
+            </example>
+        </member>
+        <member name="T:LionSky.WebControls.Tool">
+            <summary>
+            自定义工具栏所使用的工具基类
+            </summary>
+            <remarks>
+            不能单独使用 <see cref="T:LionSky.WebControls.Tool"/> 类
+            </remarks>
+        </member>
+        <member name="F:LionSky.WebControls.Tool.name">
+            <summary>
+            工具名称
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Tool.shortCutKey">
+            <summary>
+            快捷键
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Tool.types">
+            <summary>
+            工具类型
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Tool.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Tool"/> 的实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Tool.#ctor(LionSky.WebControls.ButtonType)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Tool"/> 的实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="T:LionSky.WebControls.ButtonType"/> 枚举植之一 </param>
+        </member>
+        <member name="M:LionSky.WebControls.Tool.#ctor(LionSky.WebControls.ButtonType,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Tool"/> 的实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="T:LionSky.WebControls.ButtonType"/> 枚举植之一 </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+        </member>
+        <member name="M:LionSky.WebControls.Tool.#ctor(LionSky.WebControls.ButtonType,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Tool"/> 的实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="T:LionSky.WebControls.ButtonType"/> 枚举植之一 </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+            <param name="name">&gt; <see cref="T:System.String"/>, 自定义工具的名称,必填项</param>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.BorderStyle">
+            <summary>
+            获取 Web 服务器控件的边框样式。
+            </summary>
+            <value> <see cref="P:LionSky.WebControls.Tool.BorderStyle"/> ,Web 服务器控件的边框样式。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.Font">
+            <summary>
+            获取与 WebHtmlEditor 服务器控件关联的字体属性
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.FontInfo"/> ,表示服务器控件关联的字体属性</value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.CssClass">
+            <summary>
+            获取由 Web 服务器控件在客户端呈现的级联样式表 (CSS) 类。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.FontInfo"/> ,表示服务器控件关联的字体属性</value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.AccessKey">
+            <summary>
+            获取或设置使您得以快速定位到 WebHtmlEditor 服务器控件的访问键（带下划线的字母）。
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示快速定位到 WebHtmlEditor 服务器控件的访问键（带下划线的字母） </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.ToolTip">
+            <summary>
+            获取当鼠标指针悬停在 WebHtmlEditor 服务器控件上时显示的文本。
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示鼠标指针悬停在 WebHtmlEditor 服务器控件上时显示的文本 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.ForeColor">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的前景色（通常是文本颜色）。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示服务器控件的前景色（通常是文本颜色） </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.BorderColor">
+            <summary>
+            获取 WebHtmlEditor 控件的边框颜色。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示控件的边框颜色 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.BackColor">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的背景色。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示控件的背景色 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.BorderWidth">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的边框宽度。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/>, 表示服务器控件的边框宽度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.TabIndex">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的选项卡索引。
+            </summary>
+            <value> <see cref="T:System.Int16"/> , 表示服务器控件的选项卡索引 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.EnableViewState">
+            <summary>
+            获取或设置一个值，该值指示 HtmlEditor 服务器控件是否向发出请求的客户端保持自己的视图状态，该属性经重写后不允许设为false。
+            </summary>
+            <remarks><see cref="T:LionSky.WebControls.WebHtmlEditor"/> 服务器控件将一些重要的信息保存在ViewState中
+            <p><note>该属性并不能禁止用户用<![CDATA[<%@Page EnableViewState=false%> ]]>页指令来禁用整个页面的视图状态。</note></p></remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.EnableTheming">
+            <summary>
+            获取或设置是否启用服务器控件的主题功能
+            </summary>
+            <value>如果启用控件，则为 true；否则为 false。默认为 true。</value>
+            <remarks>WebHtmlEditor 没有使用到此属性</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.SkinID">
+            <summary>
+            获取或设置服务器控件的皮肤
+            </summary>
+            <value>要应用到服务器控件的的皮肤名称，默认为 <see cref="T:System.Empty"/></value>
+            <remarks>WebHtmlEditor 没有使用到此属性</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.Visible">
+            <summary>
+            获取或设置一个值，该值指示 WebHtmlEditor 是否作为 UI 呈现在页上。
+            </summary>
+            <value>如果控件在页上可见，则为 true；否则为 false。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.Enabled">
+            <summary>
+            获取或设置一个值，该值指示是否启用 WebHtmlEditor。
+            </summary>
+            <value>如果启用控件，则为 true；否则为 false。默认为 true。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.Width">
+            <summary>
+            获取或设置 WebHtmlEditor 的宽度。
+            </summary>
+            <value>表示控件宽度的 <see cref="T:System.Web.UI.WebControls.Unit"/>。默认为 <see cref="F:System.Web.UI.WebControls.Unit.Empty"/>。</value>
+            <remarks>使用 Height 属性指定 WebHtmlEditor 服务器控件的宽度。</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.Height">
+            <summary>
+            获取或设置 WebHtmlEditor 的高度。
+            </summary>
+            <value>表示控件高度的 <see cref="T:System.Web.UI.WebControls.Unit"/>。默认为 <see cref="F:System.Web.UI.WebControls.Unit.Empty"/>。</value>
+            <remarks>使用 Height 属性指定 WebHtmlEditor 服务器控件的高度。</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.ID">
+            <summary>
+            获取或设置分配给服务器控件的编程标识符。
+            </summary>
+            <value>分配给控件的编程标识符。</value>
+            <remarks>设置服务器控件上的此属性可提供对服务器控件的属性、事件和方法的编程访问。Web 开发人员可以通过在 ASP.NET 服务器控件的开始标记中声明 id 属性来设置此属性。</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.Name">
+            <summary>
+            获取或设置按钮名称
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示按钮名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.ShortCutKey">
+            <summary>
+            获取或设置快捷键
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示快捷键 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.CustomOnClickEventBody">
+            <summary>
+            获取或设置自定义点击事件的方法主体
+            </summary>
+            <value> <see cref="T:System.String"/>, 获取或设置自定义点击事件的方法主体</value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.Types">
+            <summary>
+            获取或设置类别0,按钮;1,下拉框;2,自定义
+            </summary>
+            <value> Enum.ButtonType ,表示类别0,按钮;1,下拉框;2,其它 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.ImagePath">
+            <summary>
+            获取或设置自定义的按钮图片
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示自定义的按钮图片 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Tool.TextPosition">
+            <summary>
+            获取或设置显示文字时的模式
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示显示文字时的模式 </value>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.BaseEditor.type">
+            <summary>
+            当前编辑的对象
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.BaseEditor.collectionItemType">
+            <summary>
+            集合项的类型
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.BaseEditor.newItemTypes">
+            <summary>
+            当前被编辑的列表
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.BaseEditor.currentContext">
+            <summary>
+            表示当前组件上下文信息（例如，它所在的容器和它的 PropertyDescriptor）的信息。主要在类型转换中使用此接口。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.BaseEditor.ignoreChangingEvents">
+            <summary>
+            组件是否正在发生更改
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.BaseEditor.ignoreChangedEvents">
+            <summary>
+            组件是否已更改时发生的次数
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.#ctor(System.Type)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.IDE.BaseEditor"/> 的实例
+            </summary>
+            <param name="type">当前被编辑的类型</param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.GetItems(System.Object)">
+            <summary>
+            获取当前编辑的列表
+            </summary>
+            <param name="editValue">被解析的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.SetItems(System.Object,System.Object[])">
+            <summary>
+            设置当前编辑的列表
+            </summary>
+            <param name="editValue"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.DestroyInstance(System.Object)">
+            <summary>
+            销毁组件并将其从设计器容器中移除。
+            </summary>
+            <param name="instance">要移除的组件</param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.IsAnyObjectInheritedReadOnly(System.Object[])">
+            <summary>
+            判断组件是否是只读状态
+            </summary>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.GetDisplayText(System.Object)">
+            <summary>
+            从 Object 中解析要显示的文字
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.OnComponentChanged(System.Object,System.ComponentModel.Design.ComponentChangedEventArgs)">
+            <summary>
+            在组件已更改时发生
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.OnComponentChanging(System.Object,System.ComponentModel.Design.ComponentChangingEventArgs)">
+            <summary>
+            向组件更改服务通知特定组件正在发生更改
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.CanRemoveInstance(System.Object)">
+            <summary>
+            是否能从实例中移除对象
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.GetService(System.Type)">
+            <summary>
+            获取指定类型的服务对象
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.CreateCollectionItemType">
+            <summary>
+            创建集合项的实例
+            </summary>
+            <returns>返回集合中项的类型</returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.CreateNewItemTypes">
+            <summary>
+            创建一个新的集合项
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.GetObjectsFromInstance(System.Object)">
+            <summary>
+            向 IList 接口中添加一个新的 Object
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.BaseEditor.CreateInstance(System.Type)">
+            <summary>
+            使用与指定参数匹配程度最高的构造函数来创建指定类型的实例。
+            </summary>
+            <param name="itemType">要创建的对象的类型</param>
+            <returns>对新创建对象的引用。</returns>
+        </member>
+        <member name="P:LionSky.WebControls.IDE.BaseEditor.Context">
+            <summary>
+            表示当前组件上下文信息（例如，它所在的容器和它的 PropertyDescriptor）的信息。主要在类型转换中使用此接口。
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.IDE.BaseEditor.CollectionItemType">
+            <summary>
+            获取集合中项的类型
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.IDE.BaseEditor.CollectionType">
+            <summary>
+            当前编辑的类型
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.IDE.BaseEditor.NewItemTypes">
+            <summary>
+            创建一个新的类型
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.Licensing.RegistryFileLicenseProvider">
+            <summary>
+            提供用于实现许可证提供程序的类
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.RegistryFileLicenseProvider.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Licensing.RegistryFileLicenseProvider"/> 类的新实例。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.RegistryFileLicenseProvider.findLicenseToken(System.String[],System.String@,System.String@,System.Type)">
+            <summary>
+            查找是否具体许可
+            </summary>
+            <param name="tokens">注册字符串的数组</param>
+            <param name="key">要传出的Key</param>
+            <param name="mode">要传出的注册模式</param>
+            <param name="type">要注册的类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.RegistryFileLicenseProvider.GetLicense(System.ComponentModel.LicenseContext,System.Type,System.Object,System.Boolean)">
+            <summary>
+            获取组件的实例或类型的许可证（如果已给定上下文并确定拒绝许可证是否引发异常）。
+            </summary>
+            <param name="context">一个 <see cref="T:System.ComponentModel.LicenseContext"/>，指定可在何处使用已授权的对象。</param>
+            <param name="type">一个 <see cref="T:System.Type"/>，表示请求许可证的组件。</param>
+            <param name="instance">请求许可证的对象。</param>
+            <param name="allowExceptions">如果当组件不能被授予许可证时应该引发 <see cref="T:System.ComponentModel.LicenseException"/>，则为 true；否则为 false。</param>
+            <returns>有效的 <see cref="T:LionSky.WebControls.Licensing.License"/>。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.RegistryFileLicenseProvider.getTokenStringArrayFromFile">
+            <summary>
+            从文件中获取注册序列字符串
+            </summary>
+            <returns>返回许可证的加密数组</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.RegistryFileLicenseProvider.getTokenStringArrayFromRegistry">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LionSky.WebControls.Core.Resource.ResourceManager">
+            <summary>
+            实现对资源文件（resx）的管理
+            </summary>
+            <remarks>
+            暂时用于获取全球化的语言信息资源<br/>
+            Create By lion  <br/>
+            2005-11-11 11:11  <br/>
+            Support .Net Framework v2.0.50727 <br/> 
+            </remarks>
+            <permission cref="T:System.Security.PermissionSet">sealed</permission>
+        </member>
+        <member name="F:LionSky.WebControls.Core.Resource.ResourceManager.resourcesFileHashtable">
+            <summary>
+            资源文件列表
+            </summary>
+            <permission cref="T:System.Security.PermissionSet">private</permission>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Resource.ResourceManager.EnsureResources(System.String)">
+            <summary>
+            确定区域性特定资源的访问
+            </summary>
+            <param name="resPath">资源名称</param>
+            <permission cref="T:System.Security.PermissionSet">internal</permission>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Resource.ResourceManager.LoadResource(System.Collections.Hashtable,System.String)">
+            <summary>
+            载入资源
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Resource.ResourceManager.GetResources(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            获取指定的 <see cref="T:System.Object"/> 资源的值
+            </summary>
+            <param name="resxName">资源名称</param>		
+            <param name="culture"> <see cref="T:System.Globalization.CultureInfo"/> 对象，它表示资源被本地化为的区域性。注意，如果尚未为该区域性本地化此资源，则查找将使用区域性的 Parent 属性回退，并在签入非特定语言区域性后停止。 如果该值为空引用（Visual Basic 中为 Nothing），则使用区域性的 CurrentUICulture 属性获取 CultureInfo</param>
+            <returns>为指定区域性本地化的资源的值。如果不可能有“最佳匹配”，则返回空引用（Visual Basic 中为 Nothing）。</returns>
+            <example>
+            下面的代码演示如何调用 <seealso cref="M:LionSky.WebControls.Core.Resource.ResourceManager.GetResources(System.String,System.Globalization.CultureInfo)"/>
+            <code>
+            Manager.GetString("A.Aspx",new System.Globalization.CultureInfo("zh-CN"),"a")
+            </code>
+            </example>
+            <permission cref="T:System.Security.PermissionSet">public</permission>
+        </member>
+        <member name="T:LionSky.WebControls.Core.Resource.Locale">
+            <summary>
+            表示语言资源文件中的键/值
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Core.Resource.Locale.key">
+            <summary>
+            键
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Core.Resource.Locale.value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Resource.Locale.#ctor(System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Core.Resource.Locale"/> 的实例
+            </summary>
+            <param name="keys">键</param>
+            <param name="values">值</param>
+        </member>
+        <member name="P:LionSky.WebControls.Core.Resource.Locale.Key">
+            <summary>
+            获取或设置语言资源文件中的键
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.Resource.Locale.Value">
+            <summary>
+            获取或设置语言资源文件中的值
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.Utils.ControlVersion">
+            <summary>
+            获取 WebHtmlEditor 运行库程序集的版本号
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.ControlVersion.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Utils.ControlVersion"/> 的实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.ControlVersion.ToString">
+            <summary>
+            使用指定的格式格式化当前实例的值
+            </summary>
+            <returns>一个 <see cref="T:System.String"/>，包含具有指定格式的当前实例的值。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.ControlVersion.ToString(System.String)">
+            <summary>
+            使用指定的格式格式化当前实例的值
+            </summary>
+            <param name="format">指定要使用的格式的 String。</param>
+            <returns>一个 <see cref="T:System.String"/>，包含具有指定格式的当前实例的值。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.ControlVersion.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            使用指定的格式格式化当前实例的值
+            </summary>
+            <param name="format">指定要使用的格式的 String。</param>
+            <param name="formatProvider">用于格式化该值的 IFormatProvider。 从操作系统的当前区域设置中获取数字格式信息的空引用（Visual Basic 中为 Nothing）。</param>
+            <returns>一个 <see cref="T:System.String"/>，包含具有指定格式的当前实例的值。</returns>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.ControlVersion.MajorMinor">
+            <summary>
+            获取此实例版本号的主版本号部分、次版本号部分的值。
+            </summary>
+            <value> <see cref="T:System.String"/>, 表示此实例版本号的主版本号部分、次版本号部分的值。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.ControlVersion.MajorMinorAsUrl">
+            <summary>
+            获取此实例版本号的主版本号部分、次版本号部分的值以Url方式显示。
+            </summary>
+            <value> <see cref="T:System.String"/>, 表示此实例版本号的主版本号部分、次版本号部分的值以Url方式显示。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.ControlVersion.MajorMinorBuild">
+            <summary>
+            获取此实例版本号的主版本号部分、次版本号部分、内部版本号部分的值。
+            </summary>
+            <value> <see cref="T:System.String"/>, 表示此实例版本号的主版本号部分、次版本号部分、内部版本号部分的值。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.ControlVersion.MajorMinorBuildAsUrl">
+            <summary>
+            获取此实例版本号的主版本号部分、次版本号部分、内部版本号部分的值以Url方式显示。
+            </summary>
+            <value> <see cref="T:System.String"/>, 表示此实例版本号的主版本号部分、次版本号部分、内部版本号部分的值以Url方式显示。</value>
+        </member>
+        <member name="T:LionSky.WebControls.ToolbarCustom">
+             <summary>
+             表示 <see cref="T:LionSky.WebControls.Toolbar"/> 中的 自定义 元素
+             </summary>
+             <remarks>
+             工具栏存储的按钮工具类，使用 <see cref="T:LionSky.WebControls.ToolbarButton"/> 类以编程方式控制 <see cref="T:LionSky.WebControls.Toolbar"/> 中 自定义 元素。<br/>
+             </remarks>
+             <example>
+             以下示例演示了如何使用 <see cref="T:LionSky.WebControls.ToolbarCustom"/> 类来创建自定义工具
+             <code>
+             <![CDATA[
+             <%@ Page Language="C#"%>
+             
+             <%@ Register Assembly="WebHtmlEditor1.6" Namespace="LionSky.WebControls" TagPrefix="Lionsky" %>
+             
+             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+             
+             <html xmlns="http://www.w3.org/1999/xhtml" >
+             <head runat="server">
+                 <script runat="server">
+                 protected void Page_Load(object sender, EventArgs e)
+                 {
+                     ToolbarCustom tc = new ToolbarCustom(LionSky.WebControls.ButtonType.Custom, "", "CustomTool");
+                     tc.CustomOnClickEventBody = "alert(oTool.value);";
+                     tc.CustomRenderScript = @"var input = document.createElement (""INPUT"");
+                     input.value = ""content."";
+                     input.style.width=""100px"";
+                     var button = document.createElement (""INPUT"");
+                     button.type = ""button"";
+                     button.value= ""alert"";
+                     var controller = this.Controller;
+                     button.onclick= function()
+                     {
+                     controller.ExecuteCommand (""CustomTool"", input);
+                     return false;
+                     };
+                     var panel = document.createElement (""span"");
+                     panel.appendChild (input);
+                     panel.appendChild (button);
+                     if(!document.all){panel.onclick=function(){input.focus();};};
+                     return panel;";
+                     Toolbar tb = new Toolbar();
+                     tb.Name = "Toolbar1";
+                     tb.Tools.Add(tc);
+                      WebHtmlEditor1.Toolbars.Add(tb);
+                 }
+                   protected void Button1_Click(Object sender, EventArgs e)
+                   {
+                       Response.Write(WebHtmlEditor1.Html);
+                   }
+                </script>
+             </head>
+             <body>    
+                 <form id="form1" runat="server">
+                <div>
+                <Lionsky:WebHtmlEditor ID="WebHtmlEditor1" runat="server">
+                 </Lionsky:WebHtmlEditor>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+            </div>
+             </form>
+            </body>
+            </html>
+             ]]>
+            </code>
+             </example>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCustom.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarCustom"/> 实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCustom.#ctor(LionSky.WebControls.ButtonType)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarCustom"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.Custom"/> </param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCustom.#ctor(LionSky.WebControls.ButtonType,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarCustom"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.Custom"/> </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCustom.#ctor(LionSky.WebControls.ButtonType,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarCustom"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.Custom"/> </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+            <param name="name"> <see cref="T:System.String"/>, 自定义工具的名称,必填项</param>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCustom.ShortCutKey">
+            <summary>
+            获取或设置快捷键
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示快捷键 </value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCustom.ImagePath">
+            <summary>
+            获取或设置自定义的按钮图片
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示自定义的按钮图片 </value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCustom.TextPosition">
+            <summary>
+            获取或设置显示文字时的模式
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示显示文字时的模式 </value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCustom.CustomRenderScript">
+            <summary>
+            获取要设置自定义工具要呈现的 Js 脚本内容
+            </summary>
+            <value> <see cref="T:System.String"/>, 获取要设置自定义工具要呈现的 Js 脚本内容</value>
+        </member>
+        <member name="T:LionSky.WebControls.Core.ImageWaterMark">
+            <summary>
+            给图片添加水印的 Class。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageWaterMark.#ctor">
+            <summary>
+            实例化ImageWaterMark
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageWaterMark.GetCodecInfo(System.String)">
+            <summary>
+            获取图像编码解码器的所有相关信息
+            </summary>
+            <param name="mimeType">包含编码解码器的多用途网际邮件扩充协议 (MIME) 类型的字符串</param>
+            <returns>返回图像编码解码器的所有相关信息</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageWaterMark.ToThumbnailImage">
+            <summary>
+            生成缩略图
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageWaterMark.ToWaterMark">
+            <summary>
+            生成水印图片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageWaterMark.GetWaterMarkXY(System.Int32@,System.Int32@,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            获取水印图片的位置
+            </summary>
+            <param name="wm_x">生成水印图片的x值</param>
+            <param name="wm_y">生成水印图片的y值</param>
+            <param name="s_imagewidth">原图片的宽度</param>
+            <param name="s_imageheight">原图片的高度</param>
+            <param name="wm_imagewidth">水印图片的宽度</param>
+            <param name="wm_imageheight">水印图片的宽度</param>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageWaterMark.SaveImage(System.Drawing.Image,System.String,System.Drawing.Imaging.ImageCodecInfo)">
+            <summary>
+            保存图片
+            </summary>
+            <param name="image">Image 对象</param>
+            <param name="savePath">保存路径</param>
+            <param name="ici">指定格式的编解码参数</param>
+        </member>
+        <member name="M:LionSky.WebControls.Core.ImageWaterMark.CheckValidExt(System.String)">
+            <summary>
+            检测扩展名的有效性
+            </summary>
+            <param name="sExt">文件名扩展名</param>
+            <returns>如果扩展名有效,返回true,否则返回false.</returns>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.SourceImagePath">
+            <summary>
+            原图片路径和名称（相对路径）
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.ThumbnailImagePath">
+            <summary>
+            生成的缩略图路径（相对路径）,如果为空则保存为原图片路径
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.ThumbnailImageWidth">
+            <summary>
+            缩略图的宽度（如果不设置高度则按与按源图片比例自动生成）
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.ThumbnailImageHeight">
+            <summary>
+            缩略图的高度
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.WaterMarkAlign">
+            <summary>
+            图片水印放置位置
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.WaterMarkImagePath">
+            <summary>
+            水印图片路径和名称（相对路径）
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.SaveWaterMarkImagePath">
+            <summary>
+            保存生成后的水印图片路径和名称（相对路径）,如果为空则保存为原图片路径
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Core.ImageWaterMark.WaterMarkText">
+            <summary>
+            文字水印
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.Core.HandlerHtml">
+            <summary>
+            定义 ASP.NET 为使用自定义 HTTP 处理程序同步处理 HTTP Web 请求而实现的协定。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Core.HandlerHtml.context">
+            <summary>
+            当前 HTTP 请求获取 <see cref="T:System.Web.HttpContext"/> 对象
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerHtml.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            通过实现 IHttpHandler 接口的自定义 HttpHandler 启用 HTTP Web 请求的处理。
+            </summary>
+            <param name="c">HttpContext 对象，它提供对用于为 HTTP 请求提供服务的内部服务器对象（如 Request、Response、Session 和 Server）的引用</param>
+        </member>
+        <member name="P:LionSky.WebControls.Core.HandlerHtml.Context">
+            <summary>
+            为当前 HTTP 请求获取 <see cref="T:System.Web.HttpContext"/> 对象
+            </summary>
+            <value>当前请求的 HttpContext 对象。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Core.HandlerHtml.IsReusable">
+            <summary>
+            获取一个值，该值指示其他请求是否可以使用 IHttpHandler 实例。
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.IDE.ToolbarToolCollectionEditor">
+            <summary>
+            编辑 Tool 的基类
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditor.#ctor(System.Type)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.IDE.ToolbarToolCollectionEditor"/> 的实例
+            </summary>
+            <param name="type">要编辑对象</param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            获取由 <see cref="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/> 方法使用的编辑器样式。
+            </summary>
+            <param name="context">可用于获取附加上下文信息的 <see cref="T:System.ComponentModel.ITypeDescriptorContext"/>。</param>
+            <returns><see cref="T:System.Drawing.Design.UITypeEditorEditStyle"/> 值，指示 <see cref="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/> 使用的编辑器的样式。如果 <see cref="T:System.Drawing.Design.UITypeEditor"/> 不支持该方法，则 GetEditStyle 将返回 None。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            使用由 <see cref="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)"/> 指示的编辑器样式编辑指定对象的值。
+            </summary>
+            <param name="context">可用于获取附加上下文信息的 <see cref="T:System.ComponentModel.ITypeDescriptorContext"/>。</param>
+            <param name="provider"><see cref="T:System.IServiceProvider"/>，此编辑器可用其来获取服务。</param>
+            <param name="value">要编辑的对象。</param>
+            <returns>新的对象值。</returns>
+            <remarks>提供服务提供程序以便编辑器能够获取任何所需的服务。</remarks>
+        </member>
+        <member name="T:LionSky.WebControls.WebHtmlEditor">
+             <summary>
+             专用于 ASP.Net 的 Web 编辑器
+             </summary>
+             <remarks>
+              WebHtmlEditor就是为了解决问题而产生的。开发人员只需要调用一行简单的代码，就可以为他们的用户提供实现象Word一样具有非富功能和所见即所得的在线编辑输入功能。并且你不再需要在显示输出时，对内容进行过多的字符转换处理已达到转成HTML格式的目的，WebHtmlEditor已经把内容自动转为HTML格式了。
+             </remarks>
+             <example>
+             以下示例演示了如何使用 <see cref="T:LionSky.WebControls.WebHtmlEditor"/> 控件来获取用户输入,当用户单击 <strong>Submit</strong>按钮，将显示 WebHtmlEditor 中输入的值。
+             <code>
+             <![CDATA[
+             <%@ Page Language="C#"%>
+             
+             <%@ Register Assembly="WebHtmlEditor1.6" Namespace="LionSky.WebControls" TagPrefix="Lionsky" %>
+             
+             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+             
+             <html xmlns="http://www.w3.org/1999/xhtml" >
+             <head runat="server">
+                 <script runat="server">
+                   protected void Button1_Click(Object sender, EventArgs e)
+                   {
+                       Response.Write(WebHtmlEditor1.Html);
+                   }
+                </script>
+             </head>
+             <body>    
+                 <form id="form1" runat="server">
+                <div>
+                <Lionsky:WebHtmlEditor ID="WebHtmlEditor1" runat="server">
+                 </Lionsky:WebHtmlEditor>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+            </div>
+             </form>
+            </body>
+            </html>
+             ]]>
+            </code>
+             </example>
+        </member>
+        <member name="T:LionSky.WebControls.Utils.WebHtmlEditorControl">
+            <summary>
+            WebHtmlEditor 的基类
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Utils.WebHtmlEditorControl.license">
+            <summary>
+            向组件授予许可证的特定实例
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Utils.WebHtmlEditorControl.licenseDiceResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Utils.WebHtmlEditorControl.resinited">
+            <summary>
+            静态变量,系统是否已经初始化过配置文件
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Utils.WebHtmlEditorControl.cv">
+            <summary>
+            当前运行程序集的版本
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Utils.WebHtmlEditorControl.EmotAllowExt">
+            <summary>
+            允许显示的表情文件扩展名
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Utils.WebHtmlEditorControl"/> 的实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            将 HTML 元素的开始标记写入 HtmlTextWriter 输出流。
+            </summary>
+            <param name="writer">HtmlTextWriter 输出流</param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            将 HTML 元素的结束标记写入 HtmlTextWriter 输出流
+            </summary>
+            <param name="writer">HtmlTextWriter 输出流</param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.IsLicensed">
+            <summary>
+            IsLicensed method.
+            </summary>
+            <returns>Whether this control is licensed.</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.Dispose">
+            <summary>
+            处置使用的资源。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.OnPreRender(System.EventArgs)">
+            <summary>
+            当服务器控件将要呈现给其包含的 Page 对象时发生
+            </summary>
+            <param name="e">包含事件数据的 EventArgs 对象。</param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.EditorPreRender(System.EventArgs)">
+            <summary>
+            WebHtmlEditor自定义事件,当服务器控件将要呈现给其包含的 Page 对象时发生
+            </summary>
+            <param name="e">包含事件数据的 EventArgs 对象。</param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.RenderContents(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            将控件的内容呈现到指定的编写器中
+            </summary>
+            <param name="output"> <see cref="T:System.Web.UI.HtmlTextWriter"/>, 表示要在客户端呈现 HTML 内容的输出流。 </param>
+            <remarks>
+            如果服务器控件的 Visible 属性设置为 true，该方法将确定是否启用页的跟踪功能。如果启用，它将存储与控件有关的跟踪信息，同时向页呈现服务器控件的内容。
+            </remarks>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.RenderRedistributableWarning(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            呈现未注册错误信息
+            </summary>
+            <param name="output">HtmlTextWriter 输出流</param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.EditorRenderContents(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            WebHtmlEditor自定义事件,将控件的内容呈现到指定的编写器时发生
+            </summary>
+            <param name="output"> <see cref="T:System.Web.UI.HtmlTextWriter"/>, 表示要在客户端呈现 HTML 内容的输出流。 </param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.RegisterGlobalClientScript(System.String)">
+            <summary>
+            注册全局公用 script
+            </summary>
+            <param name="sScriptFile"><see cref="T:System.String"/>, script name</param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.CheckRuntimeConfigPhyPath">
+            <summary>
+            判断运行时的虚拟目录,如果不存在,则创建
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.InitResources">
+            <summary>
+            初始化系统配置文件
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.DisplayDemoWarning">
+            <summary>
+            判断是否没有注册成功
+            </summary>
+            <returns> true表示注册失败, false　表示注册成功</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.IsFileExists(System.String,System.Byte[])">
+            <summary>
+            判断 filepath 文件中的内容是否和 bs 相等　
+            </summary>
+            <param name="filepath">表示一个物理路径的文件名称</param>
+            <param name="bs">物理路径文件名称的内容</param>
+            <returns>如果　filepath 文件中的内容和 bs 相等,返回 true ,否则返回 false．</returns>
+            <remarks>
+            此方法为 WebHtmlEditor 内部使用，其他地方用不到
+            </remarks>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.GetApplicationPath(System.String)">
+            <summary>
+            获取虚拟目录路径
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.GetDirectoryFile(System.IO.DirectoryInfo,System.String,System.Text.StringBuilder)">
+            <summary>
+            获取表情目录的文件
+            </summary>
+            <param name="di">目录</param>
+            <param name="path">转换的路径</param>
+            <param name="sb">要将转换后路径添加的string</param>
+        </member>
+        <member name="M:LionSky.WebControls.Utils.WebHtmlEditorControl.HtmlToXhtml(System.String)">
+            <summary>
+            将 Html 标签转换成 Xhtml 标签
+            </summary>
+            <param name="input"><see cref="T:System.String"/>, 要转换的内容</param>
+            <returns>返回转换后的 Xhtml 格式的字符串</returns>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.EmotPath">
+            <summary>
+            get or set the Emot Path
+            </summary>
+            <value> <see cref="T:System.String"/> ,get or set the Emot Path </value>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.WebHtmlEditorControlsDir">
+            <summary>
+            默认的 WebHtmlEditor 系统路径
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.Localhost">
+            <summary>
+            是否运行在本机
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.RuntimeApplicationPath">
+            <summary>
+            获取运行时的虚拟目录
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.RuntimeConfigDummyPath">
+            <summary>
+            运行时的系统虚拟配置路径
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.EditorPath">
+            <summary>
+            WebHtmlEditor的路径
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.ApplicationPath">
+            <summary>
+            获取虚拟目录
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.IsRunningInDesignMode">
+            <summary>
+            是否运行在设计时
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.Version">
+            <summary>
+            Control version
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Utils.WebHtmlEditorControl.Theme">
+            <summary>
+            Gets or sets the name of the WebHtmlEditor theme.　
+            </summary>
+            <value> <see cref="T:System.String"/> ,the name of the WebHtmlEditor theme </value>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LionSky.WebControls.WebHtmlEditor"/> class
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.WebHtmlEditor.toolBarList">
+            <summary>
+            存储工具栏列
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.WebHtmlEditor.customToolMethods">
+            <summary>
+            存储 Tool 的自定义方法名称
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.WebHtmlEditor.customToolRenderScript">
+            <summary>
+            存储自定义 Tool 要呈现的脚本
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.InitializeDefaultToolbars">
+            <summary>
+            初始化默认的工具栏
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.EditorRenderContents(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            WebHtmlEditor自定义事件,将控件的内容呈现到指定的编写器时发生
+            </summary>
+            <param name="output"> <see cref="T:System.Web.UI.HtmlTextWriter"/>, 表示要在客户端呈现 HTML 内容的输出流。 </param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.RenderDragHelper(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            将 DragHelper 呈现到页面中
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.EditorPreRender(System.EventArgs)">
+            <summary>
+            WebHtmlEditor自定义事件,当服务器控件将要呈现给其包含的 Page 对象时发生
+            </summary>
+            <param name="e">包含事件数据的 EventArgs 对象。</param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.CreateControlCollection">
+            <summary>
+            创建一个新的 ControlCollection 对象来保存服务器控件的子控件（包括文本控件和服务器控件）。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.InitializeWebHtmlEditorConfigScript(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            初始化 WebHtmlEditor 的配置脚本
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.CreateContentTable">
+            <summary>
+            创建编辑内容区域表格
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.CreateWrapperTable">
+            <summary>
+            获取包装WebHtmlEditor的Table
+            </summary>
+            <returns><see cref="T:System.Web.UI.WebControls.Table"/>, 包装WebHtmlEditor的Table</returns>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.CreateTable(System.Int32,System.Int32)">
+            <summary>
+            创建Table
+            </summary>
+            <param name="rows">创建Table的行数</param>
+            <param name="colls">创建Table的列数</param>
+            <returns><see cref="T:System.Web.UI.WebControls.Table"/>, 返回创建后的Table</returns>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.SetTableBorder(System.Web.UI.WebControls.Table,System.Web.UI.WebControls.Unit,System.Int32,System.Int32)">
+            <summary>
+            SetTableBorder Method
+            </summary>
+            <param name="table">The Table</param>
+            <param name="border">Unit Border Width</param>
+            <param name="cellPadding">Unit CellPadding</param>
+            <param name="cellSpacing">Unit CellSpacing</param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.LoadPostData(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            实现 <see cref="T:System.Web.UI.IPostBackDataHandler"/> 接口，为 <see cref="T:LionSky.WebControls.WebHtmlEditor"/> 服务器控件处理回发数据。
+            </summary>
+            <param name="postDataKey">控件的主要标识符。</param>
+            <param name="postCollection">所有传入名称值的集合。</param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.RaisePostDataChangedEvent">
+            <summary>
+            实现 <see cref="T:System.Web.UI.IPostBackDataHandler"/> 接口，用信号要求服务器控件对象通知 ASP.NET 应用程序该控件的状态已更改。
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.BorderStyle">
+            <summary>
+            获取 Web 服务器控件的边框样式。
+            </summary>
+            <value> <see cref="P:LionSky.WebControls.WebHtmlEditor.BorderStyle"/> ,Web 服务器控件的边框样式。</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.EnableTheming">
+            <summary>
+            Gets or sets a value indicating whether themes apply to this control. 
+            </summary>
+            <value> <see cref="T:System.String"/> ,a value indicating whether themes apply to this control。</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.SkinID">
+            <summary>
+            Gets or sets the skin to apply to the control. 
+            </summary>
+            <value> <see cref="T:System.String"/> ,the skin to apply to the control。</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.Font">
+            <summary>
+            获取与 WebHtmlEditor 服务器控件关联的字体属性
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.FontInfo"/> ,表示服务器控件关联的字体属性</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.CssClass">
+            <summary>
+            获取由 Web 服务器控件在客户端呈现的级联样式表 (CSS) 类。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.FontInfo"/> ,表示服务器控件关联的字体属性</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.AccessKey">
+            <summary>
+            获取或设置使您得以快速定位到 WebHtmlEditor 服务器控件的访问键（带下划线的字母）。
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示快速定位到 WebHtmlEditor 服务器控件的访问键（带下划线的字母） </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ToolTip">
+            <summary>
+            获取当鼠标指针悬停在 WebHtmlEditor 服务器控件上时显示的文本。
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示鼠标指针悬停在 WebHtmlEditor 服务器控件上时显示的文本 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ForeColor">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的前景色（通常是文本颜色）。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示服务器控件的前景色（通常是文本颜色） </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.BorderColor">
+            <summary>
+            获取 WebHtmlEditor 控件的边框颜色。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示控件的边框颜色 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.BackColor">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的背景色。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示控件的背景色 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.BorderWidth">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的边框宽度。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/>, 表示服务器控件的边框宽度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.TabIndex">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的选项卡索引。
+            </summary>
+            <value> <see cref="T:System.Int16"/> , 表示服务器控件的选项卡索引 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.EnableViewState">
+            <summary>
+            获取或设置一个值，该值指示 HtmlEditor 服务器控件是否向发出请求的客户端保持自己的视图状态，该属性经重写后不允许设为false。
+            </summary>
+            <remarks><see cref="T:LionSky.WebControls.WebHtmlEditor"/> 服务器控件将一些重要的信息保存在ViewState中
+            <p><note>该属性并不能禁止用户用<![CDATA[<%@Page EnableViewState=false%> ]]>页指令来禁用整个页面的视图状态。</note></p></remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.Html">
+            <summary>
+            获取或设置 <see cref="T:LionSky.WebControls.WebHtmlEditor"/> 需要编辑的值
+            </summary>
+            <value> <see cref="T:System.String"/>, 指定 WebHtmlEditor 需要编辑的值</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.EnableHtmlTagsToXhtml">
+            <summary>
+            获取或设置是否在获取Html属性时将Html转换成XHTML
+            </summary>
+            <value> <see cref="T:System.Boolean"/> ,表示是否在获取Html属性时将Html转换成XHTML </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnLoadFocus">
+            <summary>
+            获取或设置是否在 WebHtmlEditor 载入时使编辑区自动获得焦点
+            </summary>
+            <value> <see cref="T:System.Boolean"/> ,表示是否在 WebHtmlEditor 载入时使编辑区自动获得焦点 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnLoadShowBorders">
+            <summary>
+            获取或设置是否在 WebHtmlEditor 载入时自动应用显示边框按钮
+            </summary>
+            <value> <see cref="T:System.Boolean"/> ,表示是否在 WebHtmlEditor 载入时自动应用显示边框按钮 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.StripFormattingOnPaste">
+            <summary>
+            获取或设置指定将内容粘贴到 WebHtmlEditor 中时,允许 WebHtmlEditor 操作的枚举值
+            </summary>
+            <value> <see cref="T:LionSky.WebControls.StripFormattingOptions"/>,在粘贴时允许 WebHtmlEditor 操作的枚举值</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ConvertFontTagsToSpanTags">
+            <summary>
+             获取或设置在IE下,是否将 Font 标签转换成 Span 标签
+            </summary>
+            <value><see cref="T:System.Boolean"/>, 在IE下,是否将 Font 标签转换成 Span 标签</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UseWebHtmlEditorDialog">
+            <summary>
+            获取或设置是否使用WebHtmlEditor的弹出窗口方式
+            </summary>
+            <value><see cref="T:System.Boolean"/>, 是否使用WebHtmlEditor的弹出窗口方式 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.CopyStyleToFormatBlockTool">
+            <summary>
+            获取或设置是否将当前页面中的链接的 Style 标签复制到 WebHtmlEditor 的编辑区内,并在 Css Class Dropdown中显示出来
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否将当前页面中的链接的 Style 标签复制到 WebHtmlEditor 的编辑区内,并在 Css Class Dropdown中显示出来</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ConvertTagsToLower">
+            <summary>
+            获取或设置是否在客户端将所有的标签转换成小写形式
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否在客户端将所有的标签转换成小写形式</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.AllowScript">
+            <summary>
+            获取或设置是否在客户端允许脚本的显示
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否在客户端允许脚本的显示</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.StripAbsoluteLinkPaths">
+            <summary>
+            获取或设置是否替换掉 Url 链接中的绝对路径
+            </summary>
+            <value> <see cref="T:System.Boolean"/> ,表示是否替换掉 Url 链接中的绝对路径 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.Height">
+            <summary>
+            获取或设置 Web 服务器控件的高度。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/>, Web 服务器控件的高度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.CurrentCulture">
+            <summary>
+            获取或设置当前 WebHtmlEditor 所使用的语言
+            </summary>
+            <value> <see cref="T:System.Globalization.CultureInfo"/>, 当前 WebHtmlEditor 所使用的语言</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.Width">
+            <summary>
+            获取或设置 Web 服务器控件的宽度。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/>, Web 服务器控件的宽度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.StripAbsoluteImagesPaths">
+            <summary>
+            获取或设置是否替换掉 图片 链接中的绝对路径
+            </summary>
+            <value> <see cref="T:System.Boolean"/> ,表示是否替换掉 图片 链接中的绝对路径 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadImagesPaths">
+            <summary>
+            获取或设置允许上传图片文件的目录。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传图片文件的目录 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadImagesFilter">
+            <summary>
+            获取或设置允许上传图片文件类型的筛选器字符串。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传图片文件类型的筛选器字符串 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadImagesSize">
+            <summary>
+            获取或设置上传图片文件时, 允许上传图片文件的大小(Bytes)
+            </summary>
+            <value> <see cref="T:System.Int32"/> , 上传图片文件时,表示允许上传图片文件的大小(Bytes) </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadImagesAllowUpLoadSize">
+            <summary>
+            获取或设置上传图片文件时, 文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB
+            </summary>
+            <value> <see cref="T:System.Int64"/>, 表示文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadImages_EnabledNewFolder">
+             <summary>
+             上传图片文件时，新建文件夹按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传图片文件时，新建文件夹按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定新建文件夹按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在新建文件夹按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadImages_EnabledDelete">
+             <summary>
+             上传图片文件时，删除按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传图片文件时，删除按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定删除按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在删除按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadImages_EnabledUpLoad">
+             <summary>
+             上传图片文件时，上传功能是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传图片文件时，上传功能是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定上传功能是否正常。当设置为 false 时，显示为灰色，这禁止在上传功能中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.EnabledThumbnailImage">
+             <summary>
+             图片管理时，创建缩略图功能是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示图片管理时，创建缩略图功能是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定上传功能是否正常。当设置为 false 时，显示为灰色，这禁止在上传功能中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadFlashPaths">
+            <summary>
+            获取或设置允许上传Flash文件的目录。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传Flash文件的目录 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadFlashFilter">
+            <summary>
+            获取或设置允许上传Flash文件类型的筛选器字符串。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传Flash文件类型的筛选器字符串 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadFlashSize">
+            <summary>
+            获取或设置上传Flash文件时, 允许上传Flash文件的大小(Bytes)
+            </summary>
+            <value> <see cref="T:System.Int32"/> , 上传Flash文件时,表示允许上传Flash文件的大小(Bytes) </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadFlashAllowUpLoadSize">
+            <summary>
+            获取或设置上传Flash文件时, 文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB
+            </summary>
+            <value> <see cref="T:System.Int64"/>, 表示文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadFlash_EnabledNewFolder">
+             <summary>
+             上传Flash文件时，新建文件夹按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传Flash文件时，新建文件夹按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定新建文件夹按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在新建文件夹按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadFlash_EnabledDelete">
+             <summary>
+             上传Flash文件时，删除按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传Flash文件时，删除按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定删除按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在删除按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadFlash_EnabledUpLoad">
+             <summary>
+             上传Flash文件时，上传功能是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传Flash文件时，上传功能是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定上传功能是否正常。当设置为 false 时，显示为灰色，这禁止在上传功能中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadMediaPaths">
+            <summary>
+            获取或设置允许上传媒体文件的目录。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传媒体文件的目录 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadMediaFilter">
+            <summary>
+            获取或设置允许上传媒体文件类型的筛选器字符串。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传媒体文件类型的筛选器字符串 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadMediaSize">
+            <summary>
+            获取或设置上传媒体文件时, 允许上传媒体文件的大小(Bytes)
+            </summary>
+            <value> <see cref="T:System.Int32"/> , 上传媒体文件时,表示允许上传媒体文件的大小(Bytes) </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadMediaAllowUpLoadSize">
+            <summary>
+            获取或设置上传媒体文件时, 文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB
+            </summary>
+            <value> <see cref="T:System.Int64"/>, 表示文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadMedia_EnabledNewFolder">
+             <summary>
+             上传媒体文件时，新建文件夹按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传媒体文件时，新建文件夹按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定新建文件夹按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在新建文件夹按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadMedia_EnabledDelete">
+             <summary>
+             上传媒体文件时，删除按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传媒体文件时，删除按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定删除按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在删除按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadMedia_EnabledUpLoad">
+             <summary>
+             上传媒体文件时，上传功能是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传媒体文件时，上传功能是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定上传功能是否正常。当设置为 false 时，显示为灰色，这禁止在上传功能中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadOtherFilePaths">
+            <summary>
+            获取或设置允许上传其他文件的目录。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传其他文件的目录 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadOtherFileFilter">
+            <summary>
+            获取或设置允许上传其他文件类型的筛选器字符串。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传其他文件类型的筛选器字符串 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadOtherFileSize">
+            <summary>
+            获取或设置上传其他文件时, 允许上传其他文件的大小(Bytes)
+            </summary>
+            <value> <see cref="T:System.Int32"/> , 上传其他文件时,表示允许上传其他文件的大小(Bytes) </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadOtherFileAllowUpLoadSize">
+            <summary>
+            获取或设置上传其他文件时, 文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB
+            </summary>
+            <value> <see cref="T:System.Int64"/>, 表示文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadOtherFile_EnabledNewFolder">
+             <summary>
+             上传其他文件时，新建文件夹按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传其他文件时，新建文件夹按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定新建文件夹按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在新建文件夹按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadOtherFile_EnabledDelete">
+             <summary>
+             上传其他文件时，删除按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传其他文件时，删除按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定删除按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在删除按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadOtherFile_EnabledUpLoad">
+             <summary>
+             上传其他文件时，上传功能是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传其他文件时，上传功能是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定上传功能是否正常。当设置为 false 时，显示为灰色，这禁止在上传功能中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadTemplatePaths">
+            <summary>
+            获取或设置允许上传模板文件的目录。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传模板文件的目录 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadTemplateFilter">
+            <summary>
+            获取或设置允许上传模板文件类型的筛选器字符串。
+            </summary>
+            <value> <see cref="T:System.String"/>, 允许上传模板文件类型的筛选器字符串 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadTemplateSize">
+            <summary>
+            获取或设置上传模板文件时, 允许上传模板文件的大小(Bytes)
+            </summary>
+            <value> <see cref="T:System.Int32"/> , 上传模板文件时,表示允许上传模板文件的大小(Bytes) </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadTemplateAllowUpLoadSize">
+            <summary>
+            获取或设置上传模板文件时, 文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB
+            </summary>
+            <value> <see cref="T:System.Int64"/>, 表示文件夹下允许上传文件的总量大小(单位：Bytes)，小于等于0为无限制，默认为16MB</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadTemplate_EnabledNewFolder">
+             <summary>
+             上传模板文件时，新建文件夹按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传模板文件时，新建文件夹按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定新建文件夹按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在新建文件夹按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadTemplate_EnabledDelete">
+             <summary>
+             上传模板文件时，删除按钮是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传模板文件时，删除按钮是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定删除按钮的功能是否正常。当设置为 false 时，显示为灰色，这禁止在删除按钮中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UpLoadTemplate_EnabledUpLoad">
+             <summary>
+             上传模板文件时，上传功能是否是已启用状态
+             </summary>
+             <value> <see cref="T:System.Boolean"/> ,表示上传模板文件时，上传功能是否是已启用状态 </value>
+             <remarks>
+             使用 Enabled 属性指定或确定上传功能是否正常。当设置为 false 时，显示为灰色，这禁止在上传功能中进行任何操作。
+            		<strong>注意</strong>   总是能够启用或禁用功能。然而，使控件变灰和锁定控件只适用于 Microsoft Internet Explorer 4 及更高版本。
+             此属性沿控件层次结构传播。因此，禁用容器控件将禁用该容器内的所有子控件。
+             	<strong>注意</strong>   并非所有的控件都支持此属性。有关详细信息，请参见各控件。
+            </remarks>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ShowEditMode">
+            <summary>
+            获取或设置是否显示编辑模式按钮
+            </summary>
+            <value><see cref="T:System.Boolean"/>, 是否显示编辑模式按钮</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ShowViewMode">
+            <summary>
+            获取或设置是否显示预览模式按钮
+            </summary>
+            <value><see cref="T:System.Boolean"/>, 是否显示预览模式按钮</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ShowHeightenButton">
+            <summary>
+            获取或设置是否显示增高编辑区按钮
+            </summary>
+            <value><see cref="T:System.Boolean"/>, 是否显示增高编辑区按钮</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ShowMinishButton">
+            <summary>
+            获取或设置是否显示减小编辑区按钮
+            </summary>
+            <value><see cref="T:System.Boolean"/>, 是否显示减小编辑区按钮</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.Toolbars">
+            <summary>
+            获取 <see cref="T:LionSky.WebControls.WebHtmlEditor"/> 控件中工具栏的集合
+            </summary>
+            <value> <see cref="T:LionSky.WebControls.ToolbarCollection"/>, 获取 <see cref="T:LionSky.WebControls.WebHtmlEditor"/> 控件中工具栏的集合</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ToolsOnPage">
+            <summary>
+            获取或设置 工具栏是否在页面上。
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 工具栏是否在页面上。 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ToolsHeight">
+            <summary>
+            获取或设置 WebHtmlEditor 飘浮在页面上时工具栏的高度。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/>, WebHtmlEditor 飘浮在页面上时工具栏的高度。 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ToolsWidth">
+            <summary>
+            获取或设置 WebHtmlEditor 飘浮在页面上时工具栏的宽度。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/>, WebHtmlEditor 飘浮在页面上时工具栏的宽度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.AllowCustomColor">
+            <summary>
+            获取或设置 是否在使用 前景色和背景色 时显示自定义颜色选项。
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否在使用 前景色和背景色 时显示自定义颜色选项。 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ViewDomIsDockable">
+            <summary>
+            获取或设置是否可以拖动 Dom 工具栏
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 表示是否可以拖动 Dom 工具栏</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ViewDomEffectsEnabled">
+            <summary>
+            获取或设置是否开启拖动工具栏的移动效果
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 表示是否开启拖动工具栏的移动效果</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ViewDomEffectsUpdateRate">
+            <summary>
+            获取或设置开启拖动工具栏移动效果时的移动速度
+            </summary>
+            <value> <see cref="T:System.Int32"/>, 表示开启拖动工具栏移动效果时的移动速度</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ViewDomEffectsDuration">
+            <summary>
+            获取或设置开启拖动工具栏移动效果时的移动时间
+            </summary>
+            <value> <see cref="T:System.Single"/>, 表示开启拖动工具栏移动效果时的移动时间</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ViewDomDockingZone">
+            <summary>
+            获取或设置在查看编辑区内容的 Dom 时工具栏的停放位置
+            </summary>
+            <value> <see cref="T:LionSky.WebControls.ToolbarDockingZone"/>, 表示在查看编辑区内容的 Dom 时工具栏的停放位置</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ViewDomEnable">
+            <summary>
+            获取或设置是否启用 Dom 检测功能
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否启用 Dom 检测功能</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.PropertyInspectorDockingZone">
+            <summary>
+            获取或设置属性检测功能的停放的位置。
+            </summary>
+            <value> <see cref="T:LionSky.WebControls.ToolbarDockingZone"/>, 表示属性检测功能的停放的位置。</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.PropertyInspectorCellLength">
+            <summary>
+            获取或设置属性检测功能开启并呈现在页面时，表格列的数量。
+            </summary>
+            <value> <see cref="T:System.Int32"/>, 表示属性检测功能开启并呈现在页面时，表格列的数量。 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.PropertyInspectorEnable">
+            <summary>
+            获取或设置是否启用属性实时检测功能
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 表示是否启用属性检测功能</value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.UseCommonToolbar">
+            <summary>
+            获取或设置 是否使用公用的工具栏。
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否使用公用的工具栏 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.EnableClientHtmlTagsToXhtml">
+            <summary>
+            获取或设置是否在客户端启用Html转换成XHTML的功能
+            </summary>
+            <value> <see cref="T:System.Boolean"/> ,表示是否在客户端启用Html转换成XHTML的功能 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.EnableContextMenus">
+            <summary>
+            获取或设置 是否启用右键菜单。
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否启用右键菜单 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.EnableTab">
+            <summary>
+            获取或设置 是否启用在键入 Tab 时用四个空格代替。
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 是否启用在键入 Tab 时用四个空格代替 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.LinkPathToStrip">
+            <summary>
+            获取或设置 当<see cref="P:LionSky.WebControls.WebHtmlEditor.StripAbsoluteLinkPaths"/> 为 true 时，从 Url 链接中去掉的路径。
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 当<see cref="P:LionSky.WebControls.WebHtmlEditor.StripAbsoluteLinkPaths"/> 为 true 时，从 Url 链接中去掉的路径。 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.ImagesPathToStrip">
+            <summary>
+            获取或设置 当 <see cref="P:LionSky.WebControls.WebHtmlEditor.StripAbsoluteImagesPaths"/> 为true时，从图片连接中去掉的路径。
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 当 <see cref="P:LionSky.WebControls.WebHtmlEditor.StripAbsoluteImagesPaths"/> 为true时，从图片连接中去掉的路径。 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientLoad">
+            <summary>
+            获取或设置 在客户端载入时发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端载入时发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientUpLoadImagesEnd">
+            <summary>
+            获取或设置 在客户端上传Images文件完成时发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端上传Images完成时发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientUpLoadFlashEnd">
+            <summary>
+            获取或设置 在客户端上传Flash文件完成时发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端上传Flash文件完成时发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientUpLoadMediaEnd">
+            <summary>
+            获取或设置 在客户端上传媒体文件完成时发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端上传媒体文件完成时发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientUpLoadOtherFileEnd">
+            <summary>
+            获取或设置 在客户端上传其他文件完成时发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端上传其他文件完成时发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientUpLoadTemplateEnd">
+            <summary>
+            获取或设置 在客户端上传模板文件完成时发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端上传模板文件完成时发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientCommandExecuting">
+            <summary>
+            获取或设置 在客户端执行 WebHtmlEditor 命令时发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端执行命令时发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientCommandExecuted">
+            <summary>
+            获取或设置 在客户端执行 WebHtmlEditor 命令以后发生的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, WebHtmlEditor 在客户端执行命令以后发生的方法名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.WebHtmlEditor.OnClientModeChange">
+            <summary>
+            获取或设置 在客户端执行 WebHtmlEditor 更改模式时的方法名称
+            </summary>
+            <value> <see cref="T:System.String"/>, 在客户端执行 WebHtmlEditor 更改模式时的方法名称 </value>
+        </member>
+        <member name="T:LionSky.WebControls.WebHtmlEditor.ToolbarControlCollection">
+            <summary>
+            提供使 ASP.NET 服务器控件能够维护其子控件列表的集合容器。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.ToolbarControlCollection.#ctor(System.Web.UI.Control)">
+            <summary>
+            为 owner 参数中指定的父服务器控件初始化 ControlCollection 类的新实例。
+            </summary>
+            <param name="owner">为其创建控件集合的 ASP.NET 服务器控件。</param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.ToolbarControlCollection.Add(System.Web.UI.Control)">
+            <summary>
+            将指定的 Control 对象添加到集合。
+            </summary>
+            <param name="child">要添加到集合的 Control 对象。</param>
+        </member>
+        <member name="M:LionSky.WebControls.WebHtmlEditor.ToolbarControlCollection.AddAt(System.Int32,System.Web.UI.Control)">
+            <summary>
+            将指定的 <see cref="T:System.Web.UI.Control"/> 对象添加到集合中的指定索引位置。
+            </summary>
+            <param name="index">数组中添加子控件的位置。</param>
+            <param name="child">要添加到集合的 Control 对象。</param>
+            <exception cref="T:System.ArgumentNullException">child 参数不指定控件。</exception>
+        </member>
+        <member name="T:LionSky.WebControls.ToolbarDropDown">
+             <summary>
+             表示 <see cref="T:LionSky.WebControls.Toolbar"/> 中的 Button 元素
+             </summary>
+             <remarks>
+             工具栏存储的按钮工具类，使用 <see cref="T:LionSky.WebControls.ToolbarDropDown"/> 类以编程方式控制 <see cref="T:LionSky.WebControls.Toolbar"/> 中 DropDown 元素。<br/>
+             </remarks>
+             <example>
+             以下示例演示了如何使用 <see cref="T:LionSky.WebControls.ToolbarDropDown"/> 类来创建自定义下拉列表工具
+             <code>
+             <![CDATA[
+             <%@ Page Language="C#"%>
+             
+             <%@ Register Assembly="WebHtmlEditor1.6" Namespace="LionSky.WebControls" TagPrefix="Lionsky" %>
+             
+             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+             
+             <html xmlns="http://www.w3.org/1999/xhtml" >
+             <head runat="server">
+                 <script runat="server">
+                 protected void Page_Load(object sender, EventArgs e)
+                 {
+                     ToolbarDropDown tc = new ToolbarDropDown(LionSky.WebControls.ButtonType.DropDown, "", "CustomDropDown");
+                     tc.CustomOnClickEventBody = @"alert(oTool.GetSelectedValue());";
+                     for (int i = 0; i < 10; i++)
+                     {
+                         tc.CustomItems.Add(new ListItem("Name" + i.ToString(), "Name" + i.ToString()));
+                     }
+                     Toolbar tb = new Toolbar();
+                     tb.Name = "Toolbar1";
+                     tb.Tools.Add(tc);
+                     WebHtmlEditor1.Toolbars.Add(tb);
+                 }
+                   protected void Button1_Click(Object sender, EventArgs e)
+                   {
+                       Response.Write(WebHtmlEditor1.Html);
+                   }
+                </script>
+             </head>
+             <body>    
+                 <form id="form1" runat="server">
+                <div>
+                <Lionsky:WebHtmlEditor ID="WebHtmlEditor1" runat="server">
+                 </Lionsky:WebHtmlEditor>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+            </div>
+             </form>
+            </body>
+            </html>
+             ]]>
+            </code>
+             </example>
+        </member>
+        <member name="F:LionSky.WebControls.ToolbarDropDown.customItems">
+            <summary>
+            自定义下拉列表选项
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarDropDown.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarDropDown"/> 实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarDropDown.#ctor(LionSky.WebControls.ButtonType)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarDropDown"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.DropDown"/> </param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarDropDown.#ctor(LionSky.WebControls.ButtonType,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarDropDown"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.DropDown"/> </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarDropDown.#ctor(LionSky.WebControls.ButtonType,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarDropDown"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.DropDown"/> </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+            <param name="name"> <see cref="T:System.String"/>, 自定义工具的名称,必填项</param>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarDropDown.ShowDropDownName">
+            <summary>
+            获取或设置是否显示下拉列表的右侧显示名称
+            </summary>
+            <value> <see cref="T:System.Boolean"/> ,表示是否显示下拉列表的右侧显示名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarDropDown.ItemsPerRow">
+            <summary>
+            获取或设置下拉项预览的数量
+            </summary>
+            <value> <see cref="T:System.Int32"/> , 表示下拉项预览的数量 </value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarDropDown.DropDownHeight">
+            <summary>
+            获取或设置自定义下拉列表的高度
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/> , 表示自定义下拉列表的高度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarDropDown.DropDownWidth">
+            <summary>
+            获取或设置自定义下拉列表的宽度
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/> , 表示自定义下拉列表的宽度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarDropDown.CustomItems">
+            <summary>
+            获取或设置自定的下拉列表项
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.ListItemCollection"/>, 自定的下拉列表项</value>
+        </member>
+        <member name="T:LionSky.WebControls.Toolbar">
+            <summary>
+            表示 <see cref="T:LionSky.WebControls.WebHtmlEditor"/> 的工具栏
+            </summary>
+            <remarks>
+            使用 <see cref="T:LionSky.WebControls.Toolbar"/> 类以编程方式控制 <see cref="T:LionSky.WebControls.WebHtmlEditor"/> 中 工具栏 元素。<br/>
+            有关 <see cref="T:LionSky.WebControls.Toolbar"/> 实例的初始属性值列表，请参见 <see cref="T:LionSky.WebControls.Toolbar"/> 构造函数。
+            </remarks>
+        </member>
+        <member name="F:LionSky.WebControls.Toolbar.tools">
+            <summary>
+            按钮列表
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Toolbar.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Toolbar"/> 的实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Toolbar.CreateControlCollection">
+            <summary>
+            创建一个新的 ControlCollection 对象来保存服务器控件的子控件（包括文本控件和服务器控件）。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Toolbar.CreateControlStyle">
+            <summary>
+            创建由 <see cref="T:System.Web.UI.WebControls.WebControl"/> 类在内部用来实现所有与样式有关的属性的样式对象。
+            </summary>
+            <returns> <see cref="T:System.Web.UI.WebControls.Style"/>，用于实现控件的所有与样式有关的属性。</returns>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.BorderStyle">
+            <summary>
+            获取 Web 服务器控件的边框样式。
+            </summary>
+            <value> <see cref="P:LionSky.WebControls.Toolbar.BorderStyle"/> ,Web 服务器控件的边框样式。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.Font">
+            <summary>
+            获取与 WebHtmlEditor 服务器控件关联的字体属性
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.FontInfo"/> ,表示服务器控件关联的字体属性</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.CssClass">
+            <summary>
+            获取由 Web 服务器控件在客户端呈现的级联样式表 (CSS) 类。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.FontInfo"/> ,表示服务器控件关联的字体属性</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.AccessKey">
+            <summary>
+            获取或设置使您得以快速定位到 WebHtmlEditor 服务器控件的访问键（带下划线的字母）。
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示快速定位到 WebHtmlEditor 服务器控件的访问键（带下划线的字母） </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.ToolTip">
+            <summary>
+            获取当鼠标指针悬停在 WebHtmlEditor 服务器控件上时显示的文本。
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示鼠标指针悬停在 WebHtmlEditor 服务器控件上时显示的文本 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.ForeColor">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的前景色（通常是文本颜色）。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示服务器控件的前景色（通常是文本颜色） </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.BorderColor">
+            <summary>
+            获取 WebHtmlEditor 控件的边框颜色。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示控件的边框颜色 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.BackColor">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的背景色。
+            </summary>
+            <value> <see cref="T:System.Drawing.Color"/> , 表示控件的背景色 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.BorderWidth">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的边框宽度。
+            </summary>
+            <value> <see cref="T:System.Web.UI.WebControls.Unit"/>, 表示服务器控件的边框宽度 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.TabIndex">
+            <summary>
+            获取 WebHtmlEditor 服务器控件的选项卡索引。
+            </summary>
+            <value> <see cref="T:System.Int16"/> , 表示服务器控件的选项卡索引 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.EnableViewState">
+            <summary>
+            获取或设置一个值，该值指示 HtmlEditor 服务器控件是否向发出请求的客户端保持自己的视图状态，该属性经重写后不允许设为false。
+            </summary>
+            <remarks><see cref="T:LionSky.WebControls.WebHtmlEditor"/> 服务器控件将一些重要的信息保存在ViewState中
+            <p><note>该属性并不能禁止用户用<![CDATA[<%@Page EnableViewState=false%> ]]>页指令来禁用整个页面的视图状态。</note></p></remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.EnableTheming">
+            <summary>
+            获取或设置是否启用服务器控件的主题功能
+            </summary>
+            <value>如果启用控件，则为 true；否则为 false。默认为 true。</value>
+            <remarks>WebHtmlEditor 没有使用到此属性</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.SkinID">
+            <summary>
+            获取或设置服务器控件的皮肤
+            </summary>
+            <value>要应用到服务器控件的的皮肤名称，默认为 <see cref="T:System.Empty"/></value>
+            <remarks>WebHtmlEditor 没有使用到此属性</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.Visible">
+            <summary>
+            获取或设置一个值，该值指示 WebHtmlEditor 是否作为 UI 呈现在页上。
+            </summary>
+            <value>如果控件在页上可见，则为 true；否则为 false。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.Enabled">
+            <summary>
+            获取或设置一个值，该值指示是否启用 Toolbar。
+            </summary>
+            <value>如果启用控件，则为 true；否则为 false。默认为 true。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.Width">
+            <summary>
+            获取或设置 WebHtmlEditor 的宽度。
+            </summary>
+            <value>表示控件宽度的 <see cref="T:System.Web.UI.WebControls.Unit"/>。默认为 <see cref="F:System.Web.UI.WebControls.Unit.Empty"/>。</value>
+            <remarks>使用 Height 属性指定 WebHtmlEditor 服务器控件的宽度。</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.Height">
+            <summary>
+            获取或设置 WebHtmlEditor 的高度。
+            </summary>
+            <value>表示控件高度的 <see cref="T:System.Web.UI.WebControls.Unit"/>。默认为 <see cref="F:System.Web.UI.WebControls.Unit.Empty"/>。</value>
+            <remarks>使用 Height 属性指定 WebHtmlEditor 服务器控件的高度。</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.ID">
+            <summary>
+            获取或设置分配给服务器控件的编程标识符。
+            </summary>
+            <value>分配给控件的编程标识符。</value>
+            <remarks>设置服务器控件上的此属性可提供对服务器控件的属性、事件和方法的编程访问。Web 开发人员可以通过在 ASP.NET 服务器控件的开始标记中声明 id 属性来设置此属性。</remarks>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.EffectsEnabled">
+            <summary>
+            获取或设置是否开启拖动工具栏的移动效果
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 表示是否开启拖动工具栏的移动效果</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.EffectsUpdateRate">
+            <summary>
+            获取或设置开启拖动工具栏移动效果时的移动速度
+            </summary>
+            <value> <see cref="T:System.Int32"/>, 表示开启拖动工具栏移动效果时的移动速度</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.EffectsDuration">
+            <summary>
+            获取或设置开启拖动工具栏移动效果时的移动时间
+            </summary>
+            <value> <see cref="T:System.Single"/>, 表示开启拖动工具栏移动效果时的移动时间</value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.Tools">
+            <summary>
+            设置工具栏的按钮
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.Name">
+            <summary>
+            获取或设置工具栏名称
+            </summary>
+            <value> <see cref="T:System.String"/> , 表示工具栏名称 </value>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.DockingZone">
+            <summary>
+            获取或设置工具栏的位置
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Toolbar.IsDockable">
+            <summary>
+            获取或设置是否可以拖动工具栏
+            </summary>
+            <value> <see cref="T:System.Boolean"/>, 表示是否可以拖动工具栏</value>
+        </member>
+        <member name="T:LionSky.WebControls.Toolbar.ToolbarControlCollection">
+            <summary>
+            提供使 ASP.NET 服务器控件能够维护其子控件列表的集合容器。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Toolbar.ToolbarControlCollection.#ctor(System.Web.UI.Control)">
+            <summary>
+            为 owner 参数中指定的父服务器控件初始化 ControlCollection 类的新实例。
+            </summary>
+            <param name="owner">为其创建控件集合的 ASP.NET 服务器控件。</param>
+        </member>
+        <member name="M:LionSky.WebControls.Toolbar.ToolbarControlCollection.Add(System.Web.UI.Control)">
+            <summary>
+            将指定的 Control 对象添加到集合。
+            </summary>
+            <param name="child">要添加到集合的 Control 对象。</param>
+        </member>
+        <member name="M:LionSky.WebControls.Toolbar.ToolbarControlCollection.AddAt(System.Int32,System.Web.UI.Control)">
+            <summary>
+            将指定的 <see cref="T:System.Web.UI.Control"/> 对象添加到集合中的指定索引位置。
+            </summary>
+            <param name="index">数组中添加子控件的位置。</param>
+            <param name="child">要添加到集合的 Control 对象。</param>
+            <exception cref="T:System.ArgumentNullException">child 参数不指定控件。</exception>
+        </member>
+        <member name="T:LionSky.WebControls.ToolbarButton">
+             <summary>
+             表示 <see cref="T:LionSky.WebControls.Toolbar"/> 中的 Button 元素
+             </summary>
+             <remarks>
+             工具栏存储的按钮工具类，使用 <see cref="T:LionSky.WebControls.ToolbarButton"/> 类以编程方式控制 <see cref="T:LionSky.WebControls.Toolbar"/> 中 Button 元素。<br/>
+             </remarks>
+             <example>
+             以下示例演示了如何使用 <see cref="T:LionSky.WebControls.ToolbarButton"/> 类来创建自定义按钮工具
+             <code>
+             <![CDATA[
+             <%@ Page Language="C#"%>
+             
+             <%@ Register Assembly="WebHtmlEditor1.6" Namespace="LionSky.WebControls" TagPrefix="Lionsky" %>
+             
+             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+             
+             <html xmlns="http://www.w3.org/1999/xhtml" >
+             <head runat="server">
+                 <script runat="server">
+                 protected void Page_Load(object sender, EventArgs e)
+                 {
+                     ToolbarButton tc = new ToolbarButton(LionSky.WebControls.ButtonType.Button, "", "CustomButton");
+                     tc.CustomOnClickEventBody = @"alert (""Custom Command Button"");";           
+                     Toolbar tb = new Toolbar();
+                     tb.Name = "Toolbar1";
+                     tb.Tools.Add(tc);
+                     WebHtmlEditor1.Toolbars.Add(tb);
+                 }
+                   protected void Button1_Click(Object sender, EventArgs e)
+                   {
+                       Response.Write(WebHtmlEditor1.Html);
+                   }
+                </script>
+             </head>
+             <body>    
+                 <form id="form1" runat="server">
+                <div>
+                <Lionsky:WebHtmlEditor ID="WebHtmlEditor1" runat="server">
+                 </Lionsky:WebHtmlEditor>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+            </div>
+             </form>
+            </body>
+            </html>
+             ]]>
+            </code>
+             </example>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarButton.#ctor">
+            <summary>
+            初始化 <see cref="T:System.Web.UI.WebControls.Button"/> 实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarButton.#ctor(LionSky.WebControls.ButtonType)">
+            <summary>
+            初始化 <see cref="T:System.Web.UI.WebControls.Button"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.Button"/> </param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarButton.#ctor(LionSky.WebControls.ButtonType,System.String)">
+            <summary>
+            初始化 <see cref="T:System.Web.UI.WebControls.Button"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.Button"/> </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarButton.#ctor(LionSky.WebControls.ButtonType,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:System.Web.UI.WebControls.Button"/> 实例
+            </summary>
+            <param name="type"> <see cref="T:LionSky.WebControls.ButtonType"/>, 自定义工具的类型,自定义工具的类型应为 <see cref="F:LionSky.WebControls.ButtonType.Button"/> </param>
+            <param name="shortCutKey"> <see cref="T:System.String"/>, 自定义工具的的快捷键 </param>
+            <param name="name"> <see cref="T:System.String"/>, 自定义工具的名称,必填项</param>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarButton.ShowButtonName">
+            <summary>
+            获取或设置是否显示按钮名称
+            </summary>
+            <value> <see cref="T:System.String"/> ,表示是否显示按钮名称 </value>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.#ctor(LionSky.WebControls.IDE.ToolbarToolCollectionEditor)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm"/> 的实例
+            </summary>
+            <param name="be">调用的编辑类型</param>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.value">
+            <summary>
+            当前编辑的父对象
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.ShowEditorDialog(System.Windows.Forms.Design.IWindowsFormsEditorService)">
+            <summary>
+            显示当前Form
+            </summary>
+            <param name="edSvc"><see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService"/>, 用于显示 Windows 窗体，或者在设计模式下在属性网格控件的下拉区域中显示控件</param>
+            <returns><see cref="T:System.Windows.Forms.DialogResult"/> 值之一。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.GetService(System.Type)">
+            <summary>
+            获取请求的服务（如果该服务可用的话）。
+            </summary>
+            <param name="serviceType">要检索的服务类型。 </param>
+            <returns>该服务的实例；或者如果找不到该服务，则为空引用（Visual Basic 中为 Nothing）。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.DisplayError(System.Exception)">
+            <summary>
+            显示当前异常
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.OnEditValueChanged">
+            <summary>
+            当前编辑对象被改变时发生的方法
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.InitializationSystemButtonList">
+            <summary>
+            初始化系统按钮列
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.DestroyInstance(System.Object)">
+            <summary>
+            销毁指定组件并将其从设计器容器中移除
+            </summary>
+            <param name="instance">要销毁的组件</param>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarToolCollectionEditorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.Licensing.RedistributableLicenseProvider">
+            <summary>
+            提供用于实现许可证
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.RedistributableLicenseProvider.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Licensing.RedistributableLicenseProvider"/> 类的新实例。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.RedistributableLicenseProvider.GetLicense(System.ComponentModel.LicenseContext,System.Type,System.Object,System.Boolean)">
+            <summary>
+            获取组件的实例或类型的许可证（如果已给定上下文并确定拒绝许可证是否引发异常）。
+            </summary>
+            <param name="context">一个 <see cref="T:System.ComponentModel.LicenseContext"/>，指定可在何处使用已授权的对象。</param>
+            <param name="type">一个 <see cref="T:System.Type"/>，表示请求许可证的组件。</param>
+            <param name="instance">请求许可证的对象。</param>
+            <param name="allowExceptions">如果当组件不能被授予许可证时应该引发 <see cref="T:System.ComponentModel.LicenseException"/>，则为 true；否则为 false。</param>
+            <returns>有效的 <see cref="T:LionSky.WebControls.Licensing.License"/>。</returns>
+        </member>
+        <member name="T:LionSky.WebControls.Core.HttpHandlerFactory">
+            <summary>
+            HTTP handler 类工厂为创建新的 IHttpHandler 对象实现
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HttpHandlerFactory.GetHandler(System.Web.HttpContext,System.String,System.String,System.String)">
+            <summary>
+            返回实现 IHttpHandler 接口的类的实例
+            </summary>
+            <param name="context">HttpContext 类的实例，它提供对用于为 HTTP 请求提供服务的内部服务器对象（如 Request、Response、Session 和 Server）的引用。</param>
+            <param name="requestType">客户端使用的 HTTP 数据传输方法（GET 或 POST）。 </param>
+            <param name="url">所请求资源的 RawUrl。</param>
+            <param name="pathTranslated">所请求资源的 PhysicalApplicationPath。</param>
+            <returns>处理请求的新的 IHttpHandler 对象。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HttpHandlerFactory.ReleaseHandler(System.Web.IHttpHandler)">
+            <summary>
+            使工厂可以重用现有的处理程序实例。
+            </summary>
+            <param name="handler">要重用的 IHttpHandler 对象</param>  
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.#ctor(LionSky.WebControls.IDE.ToolbarCollectionEditor)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.IDE.ToolbarCollectionEditorForm"/> 的实例
+            </summary>
+            <param name="editor"></param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.DisplayError(System.Exception)">
+            <summary>
+            显示当前异常
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.GetService(System.Type)">
+            <summary>
+            获取请求的服务（如果该服务可用的话）。
+            </summary>
+            <param name="serviceType">要检索的服务类型。 </param>
+            <returns>该服务的实例；或者如果找不到该服务，则为空引用（Visual Basic 中为 Nothing）。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.ShowEditorDialog(System.Windows.Forms.Design.IWindowsFormsEditorService)">
+            <summary>
+            显示当前Form
+            </summary>
+            <param name="edSvc"><see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService"/>, 用于显示 Windows 窗体，或者在设计模式下在属性网格控件的下拉区域中显示控件</param>
+            <returns><see cref="T:System.Windows.Forms.DialogResult"/> 值之一。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.OnEditValueChanged">
+            <summary>
+            当前编辑对象被改变时发生的方法
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.ID_ToolbarListBox_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            在 SelectedIndex 属性更改后发生
+            </summary>
+            <param name="sender">事件的源。</param>
+            <param name="e">包含事件数据的 <see cref="T:System.EventArgs"/>。</param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.DestroyInstance(System.Object)">
+            <summary>
+            销毁指定组件并将其从设计器容器中移除
+            </summary>
+            <param name="instance">要销毁的组件</param>
+        </member>
+        <member name="F:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.Licensing.License">
+            <summary>
+            向 WebHtmlEditor 组件的特定实例授予许可证。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Licensing.License.key">
+            <summary>
+            许可证密钥
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Licensing.License.licenseMode">
+            <summary>
+            授权模式
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.License.#ctor(LionSky.WebControls.Licensing.RegistryFileLicenseProvider,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Licensing.License"/> 的实例
+            </summary>
+            <param name="owner"></param>
+            <param name="key"></param>
+            <param name="licenseMode"></param>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.License.Dispose">
+            <summary>
+            处置该许可证使用的资源
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Licensing.License.LicenseKey">
+            <summary>
+            获取授予该组件的许可证密钥
+            </summary>
+        </member>
+        <member name="P:LionSky.WebControls.Licensing.License.LicenseMode">
+            <summary>
+            获取授予该组件的授权模式
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.Core.Files">
+            <summary>
+            用于获取和文件相关信息的类
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Files.GetDirectoryInfoSize(System.IO.DirectoryInfo)">
+            <summary>
+            获取目录中的文件总数大小
+            </summary>
+            <param name="di">目录的实例</param>
+            <returns>返回目录中的文件总数大小</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.Files.GetFormatFileLengthString(System.Double)">
+            <summary>
+            Format readsize/Seconds flow[unit:MB or KB]
+            </summary>
+            <param name="size">readsize/Seconds flow</param>
+            <returns>Format readsize/Seconds string</returns>
+        </member>
+        <member name="T:LionSky.WebControls.ToolbarCollection">
+             <summary>
+             列表控件中 <see cref="T:LionSky.WebControls.Toolbar"/> 的集合。不能继承此类。使用用大小可按需动态增加的数组实现 IList 接口，Collection of Toolbar objects。
+             </summary>
+             <remarks>
+             <see cref="T:LionSky.WebControls.ToolbarCollection"/> 是密封类。不能继承此类。<see cref="T:LionSky.WebControls.ToolbarCollection"/> 类表示 <see cref="T:LionSky.WebControls.Toolbar"/> 的集合，<see cref="T:LionSky.WebControls.Toolbar"/> 反过来表示工具栏列表中的项。若要以编程方式从列表控件中检索 <see cref="T:LionSky.WebControls.Toolbar"/> 对象，请使用以下方法之一： <br/>
+             <list type="bullet">
+                 <item>
+                     <description>利用数组表示法使用索引器从集合中获取单个 <see cref="T:LionSky.WebControls.Toolbar"/>。</description>
+                 </item>
+                 <item>
+                     <description>使用 <see cref="M:LionSky.WebControls.ToolbarCollection.CopyTo(System.Array,System.Int32)"/> 方法将集合的内容复制到 <see cref="T:System.Array"/> 对象，然后可以使用该对象获取集合中的项。</description>
+                 </item>
+                 <item>
+                     <description>使用 <see cref="M:LionSky.WebControls.ToolbarCollection.GetEnumerator"/> 方法创建一个 <see cref="T:System.Collections.IEnumerator"/> 实现的对象，然后可以使用该对象从集合中获取项。</description>
+                 </item>
+             </list>
+             <see cref="P:LionSky.WebControls.ToolbarCollection.Count"/> 属性指定集合中项的总数，常用于确定集合的上限。通过使用 <see cref="M:LionSky.WebControls.ToolbarCollection.Add(LionSky.WebControls.Toolbar)"/> 和 <see cref="M:LionSky.WebControls.ToolbarCollection.Remove(LionSky.WebControls.Toolbar)"/> 方法，可以将项添加到该集合和从该集合中移除项。
+             </remarks>
+             <example>
+             <code>
+             <![CDATA[
+             <%@ Page Language="C#"%>
+             
+             <%@ Register Assembly="WebHtmlEditor1.6" Namespace="LionSky.WebControls" TagPrefix="Lionsky" %>
+             
+             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+             
+             <html xmlns="http://www.w3.org/1999/xhtml" >
+             <head runat="server">
+                 <script runat="server">
+                 protected void Page_Load(object sender, EventArgs e)
+                 {
+                     ToolbarButton tc = new ToolbarButton(LionSky.WebControls.ButtonType.Button, "", "CustomButton");
+                     tc.CustomOnClickEventBody = @"alert (""Custom Command Button"");";           
+                     Toolbar tb = new Toolbar();
+                     tb.Name = "Toolbar1";
+                     tb.Tools.Add(tc);
+                     WebHtmlEditor1.Toolbars.Add(tb);
+                 }
+                   protected void Button1_Click(Object sender, EventArgs e)
+                   {
+                       Response.Write(WebHtmlEditor1.Html);
+                   }
+                </script>
+             </head>
+             <body>    
+                 <form id="form1" runat="server">
+                <div>
+                <Lionsky:WebHtmlEditor ID="WebHtmlEditor1" runat="server">
+                 </Lionsky:WebHtmlEditor>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
+            </div>
+             </form>
+            </body>
+            </html>
+             ]]>
+            </code>
+             </example>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.#ctor(LionSky.WebControls.WebHtmlEditor)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 的实例
+            </summary>
+            <param name="owner">容器</param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.Add(LionSky.WebControls.Toolbar)">
+            <summary>
+            将 <see cref="T:LionSky.WebControls.Toolbar"/> 追加到集合的结尾。
+            </summary>
+            <param name="toolbar">要追加到集合的 <see cref="T:LionSky.WebControls.Toolbar"/>。 </param>
+            <returns>返回添加项的索引值</returns>
+            <remarks>使用 Add 方法将一个 <see cref="T:LionSky.WebControls.Toolbar"/> 追加到集合的结尾。此方法实现采用 Toolbars 参数指定的 <see cref="T:LionSky.WebControls.Toolbar"/> 并将其追加到集合。</remarks>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.AddAt(System.Int32,LionSky.WebControls.Toolbar)">
+            <summary>
+            将指定的 <see cref="T:LionSky.WebControls.Toolbar"/> 对象添加到集合中的指定索引位置。
+            </summary>
+            <param name="index">数组中添加子控件的位置。</param>
+            <param name="toolbar">要添加到集合的 <see cref="T:LionSky.WebControls.Toolbar"/> 对象。</param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.AddRange(LionSky.WebControls.Toolbar[])">
+            <summary>
+            将 <see cref="T:LionSky.WebControls.Toolbar"/> 的数组添加到 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 的末尾。
+            </summary>
+            <param name="toolbars"><see cref="T:LionSky.WebControls.ToolbarCollection"/>，其数组应被添加到  <see cref="T:LionSky.WebControls.ToolbarCollection"/> 的末尾。集合本身不能为空引用（Visual Basic 中为 Nothing），但它可以包含为空引用 (Nothing) 的元素。</param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.Clear">
+            <summary>
+            从当前服务器控件的 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中移除所有控件。
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+            从 Array 中的指定索引位置开始，将 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中存储的子控件复制到 <see cref="T:System.Array"/> 对象
+            </summary>
+            <param name="array">要将子控件复制到的 Array。</param>
+            <param name="index">array 中从零开始的相对索引，从此位置开始进行复制。</param>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.GetEnumerator">
+            <summary>
+            检索可以循环访问 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象的枚举数。
+            </summary>
+            <returns>循环访问集合的枚举数。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.GetToolbarIndex(LionSky.WebControls.Toolbar)">
+            <summary>
+            检索集合中指定<see cref="T:LionSky.WebControls.Toolbar"/> 对象的索引。
+            </summary>
+            <param name="toolbar">为其返回索引的 <see cref="T:LionSky.WebControls.Toolbar"/> 对象。</param>
+            <returns>指定服务器控件的索引。如果服务器控件当前不是集合的成员，则返回 -1。</returns>
+            <remarks>使用此方法确定 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中指定服务器控件的索引位置。</remarks>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.Remove(LionSky.WebControls.Toolbar)">
+            <summary>
+            从父服务器控件的 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中移除指定服务器控件。
+            </summary>
+            <param name="toolbar">要移除的服务器控件。</param>
+            <remarks>若要从索引位置移除控件，请使用 <see cref="M:LionSky.WebControls.ToolbarCollection.RemoveAt(System.Int32)"/> 方法。</remarks>
+        </member>
+        <member name="M:LionSky.WebControls.ToolbarCollection.RemoveAt(System.Int32)">
+            <summary>
+            从 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中移除指定索引位置处的子控件。
+            </summary>
+            <param name="index">要从集合中移除的服务器控件的序号索引。</param>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCollection.Count">
+            <summary>
+            为指定的 ASP.NET 服务器控件获取 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中的服务器控件数。
+            </summary>
+            <value>为指定的 ASP.NET 服务器控件获取 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中的服务器控件数。</value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCollection.IsReadOnly">
+            <summary>
+            获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象是否为只读。
+            </summary>
+            <value>获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象是否为只读。如果控件为只读，则为 true；否则为 false。默认为 false。</value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCollection.IsSynchronized">
+            <summary>
+            获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 是否已同步。
+            </summary>
+            <value>获取一个值，该值指示 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 是否已同步。</value>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCollection.Item(System.Int32)">
+            <summary>
+            获取对 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 对象中指定索引位置的服务器控件的引用。
+            </summary>
+            <param name="index">服务器控件在 <see cref="T:LionSky.WebControls.ToolbarCollection"/> 中的位置。</param>
+            <returns></returns>
+        </member>
+        <member name="P:LionSky.WebControls.ToolbarCollection.SyncRoot">
+            <summary>
+            获取可用于同步控件集合访问的对象。
+            </summary>
+            <value>获取可用于同步控件集合访问的对象。用于同步集合的 <see cref="T:System.Object"/>。</value>
+        </member>
+        <member name="T:LionSky.WebControls.StripFormattingOptions">
+            <summary>
+            粘贴时去除格式化选项
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.None">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.All">
+            <summary>
+            所有标签
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.MSWord">
+            <summary>
+            粘贴从Word中复制的内容，并去除冗余格式
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.MSWordNoFonts">
+            <summary>
+            粘贴从Word中复制的内容，并去word特有格式和字体相关的格式 。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.MSWordRemoveAll">
+            <summary>
+            除去所有Word格式
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.Css">
+            <summary>
+            去除Css格式
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.Font">
+            <summary>
+            去除字体格式
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.StripFormattingOptions.Span">
+            <summary>
+            去除Span标签格式
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.LicenseDice">
+            <summary>
+            表示被许可的状态
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.LicenseDice.Licensed">
+            <summary>
+            已经许可成功
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.LicenseDice.NotLicensed">
+            <summary>
+            没有许可
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.LicenseDice.NotThrown">
+            <summary>
+            过去也没有过
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.ButtonType">
+            <summary>
+            工具栏存储的工具类型
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ButtonType.Button">
+            <summary>
+            按钮
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ButtonType.DropDown">
+            <summary>
+            下拉列表
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ButtonType.Step">
+            <summary>
+            分隔线
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ButtonType.Custom">
+            <summary>
+            自定义
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.ToolbarDockingZone">
+            <summary>
+            The Toolbar Dockingzone
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ToolbarDockingZone.None">
+            <summary>
+            none
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ToolbarDockingZone.Left">
+            <summary>
+            left
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ToolbarDockingZone.Right">
+            <summary>
+            right
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ToolbarDockingZone.Bottom">
+            <summary>
+            bottom
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ToolbarDockingZone.Module">
+            <summary>
+            Module
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.ToolsTextPosition">
+            <summary>
+            按钮或下拉框显示文字时的位置
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ToolsTextPosition.Right">
+            <summary>
+            右侧
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ToolsTextPosition.Bottom">
+            <summary>
+            下侧
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.ImageAlign">
+            <summary>
+            指定图像的对齐方式。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ImageAlign.LeftTop">
+            <summary>
+            图像在左上边缘。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ImageAlign.LeftBottom">
+            <summary>
+            图像在左下边缘。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ImageAlign.RightTop">
+            <summary>
+            图像在右上边缘。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ImageAlign.RightBottom">
+            <summary>
+            图像在右下边缘。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ImageAlign.Center">
+            <summary>
+            图像居中
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ImageAlign.CenterBottom">
+            <summary>
+            图像在下边缘居中
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.ImageAlign.CenterTop">
+            <summary>
+            图像在上边缘居中
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.TokenEncoding.#ctor">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.Licensing.TokenEncoding"/> 的实例
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.TokenEncoding.Decrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            进行解密
+            </summary>
+            <param name="cipherData"></param>
+            <param name="Key"></param>
+            <param name="IV"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.TokenEncoding.StringDecrypt(System.String)">
+            <summary>
+            从字符串中解析出第二个被加密的字符串
+            </summary>
+            <param name="cipherText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.TokenEncoding.TokenDecrypt(System.String)">
+            <summary>
+            从加密的字符串中解密出对象
+            </summary>
+            <param name="cipherText"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LionSky.WebControls.Core.HandlerUpLoad">
+            <summary>
+            定义 ASP.NET 为使用自定义 HTTP 处理程序同步处理 HTTP Web 请求而实现的协定。
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Core.HandlerUpLoad.context">
+            <summary>
+            当前 HTTP 请求获取 <see cref="T:System.Web.HttpContext"/> 对象
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            通过实现 IHttpHandler 接口的自定义 HttpHandler 启用 HTTP Web 请求的处理。
+            </summary>
+            <param name="c">HttpContext 对象，它提供对用于为 HTTP 请求提供服务的内部服务器对象（如 Request、Response、Session 和 Server）的引用</param>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.UpLoadFile">
+            <summary>
+            上传文件
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.ActionCommand_RefreshDirectory">
+            <summary>
+            刷新目录
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.ActionCommand_CreateThumbnailImg">
+            <summary>
+            创建文件缩略图
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.ActionCommand_Delete">
+            <summary>
+            删除文件夹或文件操作
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.ActionCommand_CreateNewFolder">
+            <summary>
+            新建文件夹操作
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.InitializePage">
+            <summary>
+            初始化页面
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.InitializeFileTree">
+            <summary>
+            初始化文件树
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.OutScript_HideProcess">
+            <summary>
+            输出客户端脚本隐藏Process
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.OutScriptNoBack(System.String)">
+            <summary>
+            输出客户端脚本
+            </summary>
+            <param name="msg">脚本消息</param>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.GetFileExtName(System.String)">
+            <summary>
+            获取文件扩展名
+            </summary>
+            <param name="fileName">源文件名称</param>
+            <returns>扩展名</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.CheckFileExt(System.String[],System.String)">
+            <summary>
+            检测文件的扩展名是否是允许的
+            </summary>
+            <param name="allowExt">默认允许的扩展名数组</param>
+            <param name="fileName">要检测的文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.GetFileTreeNode">
+            <summary>
+            获取文件树脚本
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.RecursionCheckCreateNewFolderName(System.String,System.Int32)">
+            <summary>
+            递归依次增长判断新建文件的名称是否重复
+            </summary>
+            <param name="saveFolderName">要创建的文件夹名称</param>
+            <param name="count">增长命名的起始数</param>
+            <returns>返回不重复的文件名</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.RecursionCheckUpLoadFileName(System.String,System.Int32,System.String)">
+            <summary>
+            递归依次增长判断本地上传的文件名是否重复
+            </summary>
+            <param name="savePathFileName">上传的文件名</param>
+            <param name="count">增长命名的起始数</param>
+            <param name="fileExt">文件扩展名</param>
+            <returns>返回不重复的文件名</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Core.HandlerUpLoad.RecursionGetFileTreeNode(System.IO.DirectoryInfo[],System.String,System.Text.StringBuilder)">
+            <summary>
+            递归获取文件数结构
+            </summary>
+            <param name="directoryList">要获取的目录数组</param>
+            <param name="currPath">客户端显示的文件名称</param>
+            <param name="sb">装载内容的容器</param>
+        </member>
+        <member name="P:LionSky.WebControls.Core.HandlerUpLoad.Context">
+            <summary>
+            为当前 HTTP 请求获取 <see cref="T:System.Web.HttpContext"/> 对象
+            </summary>
+            <value>当前请求的 HttpContext 对象。</value>
+        </member>
+        <member name="P:LionSky.WebControls.Core.HandlerUpLoad.IsReusable">
+            <summary>
+            获取一个值，该值指示其他请求是否可以使用 IHttpHandler 实例。
+            </summary>
+        </member>
+        <member name="T:LionSky.WebControls.Licensing.DESCrypto">
+            <summary>
+            DESCrypto 用于对数据进行加密解的类
+            <seealso cref="T:System.Security.Cryptography.DESCryptoServiceProvider"/>
+            <seealso cref="T:System.Security.Cryptography.CryptoStream"/>
+            </summary>
+            <remarks>
+            加密、解密类
+            </remarks> 
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.DESCrypto.#ctor">
+            <summary>
+            初始化 DESCrypto 的实例
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Licensing.DESCrypto.desKey">
+            <summary>
+            des加密如果不是传入的key 则需要使用下面的默认key desKey //42, 16, 93, 156, 78, 4, 218, 32
+            </summary>
+        </member>
+        <member name="F:LionSky.WebControls.Licensing.DESCrypto.desIV">
+            <summary>
+            des加密如果不是传入的key 则需要使用下面的默认key desIV//55, 103, 246, 79, 36, 99, 167, 3
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.DESCrypto.BuildDecryptType">
+            <summary>
+            绑定动态解密类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.DESCrypto.GetBuilDecryptByte(System.Int32[])">
+            <summary>
+            从加密后的 int[] 中去解密 
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.DESCrypto.Decrypt(System.String)">
+            <summary>
+            DEC 解密函数
+            </summary>
+            <param name="str">被解密的字符串</param>
+            <returns>返回被解密过的字符串</returns>
+            <example>
+            以下示例演示了如何调用 Decrypt 方法：<br/>
+            <code>
+            	string str = Encrypt("欢迎光迎 CSDN");
+            	Response.Write(str);		
+            	Response.Write(Decrypt(str));
+            </code>
+            </example>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.DESCrypto.Decrypt(System.String,System.Byte[])">
+            <summary>
+            DEC 解密函数
+            </summary>
+            <param name="str">被解密的字符串</param>
+            <param name="key">DESKEY</param>
+            <returns>返回被解密过的字符串</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.DESCrypto.Decrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            DEC 解密函数
+            </summary>
+            <param name="str">被解密的字符串</param>
+            <param name="key">DESKEY</param>
+            <param name="iv">DESIV</param>
+            <returns>返回被解密过的字符串</returns>
+        </member>
+        <member name="M:LionSky.WebControls.Licensing.DESCrypto.ByteArray2String(System.Byte[])">
+            <summary>
+            加密函数用到的转换byte字节数组为字符串函数
+            </summary>
+            <param name="input">输入字节数组</param>
+            <returns>字符串</returns>
+        </member>
+        <member name="T:LionSky.WebControls.IDE.ToolbarCollectionEditor">
+            <summary>
+            编辑 ToolBar 的基类
+            </summary>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditor.#ctor(System.Type)">
+            <summary>
+            初始化 <see cref="T:LionSky.WebControls.IDE.ToolbarCollectionEditor"/> 的实例
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
+            <summary>
+            获取由 <see cref="M:LionSky.WebControls.IDE.ToolbarCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/> 方法使用的编辑器样式。
+            </summary>
+            <param name="context">可用于获取附加上下文信息的 <see cref="T:System.ComponentModel.ITypeDescriptorContext"/>。</param>
+            <returns><see cref="T:System.Drawing.Design.UITypeEditorEditStyle"/> 值，指示 <see cref="M:LionSky.WebControls.IDE.ToolbarCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)"/> 使用的编辑器的样式。如果 <see cref="T:System.Drawing.Design.UITypeEditor"/> 不支持该方法，则 GetEditStyle 将返回 None。</returns>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditor.EditValue(System.ComponentModel.ITypeDescriptorContext,System.IServiceProvider,System.Object)">
+            <summary>
+            使用由 <see cref="M:LionSky.WebControls.IDE.ToolbarCollectionEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)"/> 指示的编辑器样式编辑指定对象的值。
+            </summary>
+            <param name="context">可用于获取附加上下文信息的 <see cref="T:System.ComponentModel.ITypeDescriptorContext"/>。</param>
+            <param name="provider"><see cref="T:System.IServiceProvider"/>，此编辑器可用其来获取服务。</param>
+            <param name="value">要编辑的对象。</param>
+            <returns>新的对象值。</returns>
+            <remarks>提供服务提供程序以便编辑器能够获取任何所需的服务。</remarks>
+        </member>
+        <member name="M:LionSky.WebControls.IDE.ToolbarCollectionEditor.InitializeToolbars(System.Collections.IList)">
+            <summary>
+            向 IList 中添加 WebHtmlEditor 默认的 Tool
+            </summary>
+            <param name="tb"></param>
+        </member>
+    </members>
+</doc>
